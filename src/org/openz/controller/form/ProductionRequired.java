@@ -52,6 +52,7 @@ public class ProductionRequired  extends HttpSecureAppServlet {
       FieldProvider[] GridData;
       OBError myMessage = new OBError();
       myMessage.setType("Success");
+      log4j.error("1234554321p_run01");
       
       
       // INIT by AD
@@ -59,7 +60,9 @@ public class ProductionRequired  extends HttpSecureAppServlet {
         if (vars.commandIn("FIND")||vars.commandIn("DEFAULT")||vars.commandIn("SAVE")||vars.commandIn("ADDENTRY")){
            // Delete manual Entrys, if there
            if (vars.commandIn("DEFAULT") && vars.getSessionValue(this.getClass().getName() + "|MAUALENTRYS").isEmpty()) {
+        	   log4j.error("1234554321p_run02");
         	   ProductionRequiredData.deleteonload(this);
+        	   log4j.error("1234554321p_run03");
            }
            if (vars.commandIn("ADDENTRY")) {
              conn= this.getTransactionConnection();
@@ -157,7 +160,7 @@ public class ProductionRequired  extends HttpSecureAppServlet {
                 response.sendRedirect(strDireccion + request.getServletPath());
             }
             else {  // All other Commands, Not SAVE
-              
+            	log4j.error("1234554321p_run04");
               String strToolbar=FormhelperData.getFormToolbar(this, this.getClass().getName());
               //Window Tabs (Default Declaration)
               WindowTabs tabs;                  //The Servlet Name generated automatically
@@ -181,7 +184,8 @@ public class ProductionRequired  extends HttpSecureAppServlet {
               strOutput = script.doScript(strOutput, "",this,vars);
               PrintWriter out = response.getWriter();
               out.println(strOutput);
-              out.close(); 
+              out.close();
+              log4j.error("1234554321p_run05");
             }
         }    
 }
