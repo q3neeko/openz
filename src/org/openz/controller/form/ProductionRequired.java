@@ -177,6 +177,7 @@ public class ProductionRequired  extends HttpSecureAppServlet {
               String strTreeOrg = ProductionRequiredData.treeOrg(this, vars.getClient());
               //GridData= ProductionRequiredData.selectgrid(this, vars.getLanguage(),strProductId, strDateFrom, strDateTo);
               String orglist=Tree.getMembers(this, strTreeOrg, vars.getOrg());
+              //BOOM
               log4j.error("1234554321p_selectgrid_START");
               GridData= ProductionRequiredData.selectgrid(this, vars.getLanguage(), strProductId,strDateFrom,strDateTo,orglist);
               log4j.error("1234554321p_selectgrid_END");
