@@ -61,11 +61,9 @@ public class ProductionRequired  extends HttpSecureAppServlet {
         if (vars.commandIn("FIND")||vars.commandIn("DEFAULT")||vars.commandIn("SAVE")||vars.commandIn("ADDENTRY")){
            // Delete manual Entrys, if there
            if (vars.commandIn("DEFAULT") && vars.getSessionValue(this.getClass().getName() + "|MAUALENTRYS").isEmpty()) {
-        	   log4j.info("pistschenko start");
-        	   //BOOM
+        	   log4j.error("pistschenko start");
         	   ProductionRequiredData.deleteonload(this);
-        	   //BAAM
-        	   log4j.info("pistschenko end");
+        	   log4j.error("pistschenko end");
            }
            if (vars.commandIn("ADDENTRY")) {
              conn= this.getTransactionConnection();
