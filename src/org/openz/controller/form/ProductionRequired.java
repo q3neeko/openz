@@ -52,7 +52,6 @@ public class ProductionRequired  extends HttpSecureAppServlet {
       FieldProvider[] GridData;
       OBError myMessage = new OBError();
       myMessage.setType("Success");
-      log4j.error("1234554321p_run01");
       
       
       // INIT by AD
@@ -60,9 +59,7 @@ public class ProductionRequired  extends HttpSecureAppServlet {
         if (vars.commandIn("FIND")||vars.commandIn("DEFAULT")||vars.commandIn("SAVE")||vars.commandIn("ADDENTRY")){
            // Delete manual Entrys, if there
            if (vars.commandIn("DEFAULT") && vars.getSessionValue(this.getClass().getName() + "|MAUALENTRYS").isEmpty()) {
-        	   log4j.error("1234554321p_run02");
         	   ProductionRequiredData.deleteonload(this);
-        	   log4j.error("1234554321p_run03");
            }
            if (vars.commandIn("ADDENTRY")) {
              conn= this.getTransactionConnection();
@@ -160,7 +157,6 @@ public class ProductionRequired  extends HttpSecureAppServlet {
                 response.sendRedirect(strDireccion + request.getServletPath());
             }
             else {  // All other Commands, Not SAVE
-            	log4j.error("1234554321p_run04");
               String strToolbar=FormhelperData.getFormToolbar(this, this.getClass().getName());
               //Window Tabs (Default Declaration)
               WindowTabs tabs;                  //The Servlet Name generated automatically
@@ -177,18 +173,22 @@ public class ProductionRequired  extends HttpSecureAppServlet {
               String strTreeOrg = ProductionRequiredData.treeOrg(this, vars.getClient());
               //GridData= ProductionRequiredData.selectgrid(this, vars.getLanguage(),strProductId, strDateFrom, strDateTo);
               String orglist=Tree.getMembers(this, strTreeOrg, vars.getOrg());
-              //BOOM
-              log4j.error("1234554321p_selectgrid_START");
               GridData= ProductionRequiredData.selectgrid(this, vars.getLanguage(), strProductId,strDateFrom,strDateTo,orglist);
-              log4j.error("1234554321p_selectgrid_END");
+              log4j.error("1234554321p_001");
               String strGrid1=grid.printGrid(this, vars, script, GridData);
+              log4j.error("1234554321p_002");
               strOutput=Replace.replace(strSkeleton, "@CONTENT@",  filterStructure + strGrid1 + buttonprocess);
+              log4j.error("1234554321p_003");
               script.addOnload("setProcessingMode('window', false);");
+              log4j.error("1234554321p_004");
               strOutput = script.doScript(strOutput, "",this,vars);
+              log4j.error("1234554321p_005");
               PrintWriter out = response.getWriter();
+              log4j.error("1234554321p_006");
               out.println(strOutput);
+              log4j.error("1234554321p_007");
               out.close();
-              log4j.error("1234554321p_run05");
+              log4j.error("1234554321p_008");
             }
         }    
 }
