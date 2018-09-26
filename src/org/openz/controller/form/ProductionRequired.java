@@ -29,10 +29,10 @@ import org.openz.view.templates.ConfigureFrameWindow;
 
 public class ProductionRequired  extends HttpSecureAppServlet {
     private static final long serialVersionUID = 1L;
-//    static Logger log4j = Logger.getLogger(ProductionRequired.class);
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException,
         ServletException {
+      log4j.error("1234554321p_start");
       VariablesSecureApp vars = new VariablesSecureApp(request);
       Connection conn = null;
       Vector <String> retval;
@@ -59,9 +59,7 @@ public class ProductionRequired  extends HttpSecureAppServlet {
         if (vars.commandIn("FIND")||vars.commandIn("DEFAULT")||vars.commandIn("SAVE")||vars.commandIn("ADDENTRY")){
            // Delete manual Entrys, if there
            if (vars.commandIn("DEFAULT") && vars.getSessionValue(this.getClass().getName() + "|MAUALENTRYS").isEmpty()) {
-        	   log4j.error("1234554321p_start");
         	   ProductionRequiredData.deleteonload(this);
-        	   log4j.error("1234554321p_end");
            }
            if (vars.commandIn("ADDENTRY")) {
              conn= this.getTransactionConnection();
@@ -195,6 +193,7 @@ public class ProductionRequired  extends HttpSecureAppServlet {
             } catch (final Exception ignored) {
             }
             throw new ServletException(e);}
+      		log4j.error("1234554321p_end");
           }
        
         
