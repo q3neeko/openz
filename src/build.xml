@@ -217,7 +217,7 @@ build.war: build a war file in the lib directory.
     </target>
     
     <target name="generate.java.mapping" unless="timestamp">
-    <sql driver="${bbdd.driver}" url="${bbdd.owner.url}" userid="${bbdd.user}" password="${bbdd.password}" delimiter="/">
+    	<sql driver="${bbdd.driver}" url="${bbdd.owner.url}" userid="${bbdd.user}" password="${bbdd.password}" delimiter="/">
       <classpath>
         <fileset dir="${base.lib}">
           <include name="**/*.jar">
