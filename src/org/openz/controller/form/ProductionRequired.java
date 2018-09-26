@@ -32,7 +32,6 @@ public class ProductionRequired  extends HttpSecureAppServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException,
         ServletException {
-      log4j.error("1234554321p_start");
       VariablesSecureApp vars = new VariablesSecureApp(request);
       Connection conn = null;
       Vector <String> retval;
@@ -174,22 +173,13 @@ public class ProductionRequired  extends HttpSecureAppServlet {
               //GridData= ProductionRequiredData.selectgrid(this, vars.getLanguage(),strProductId, strDateFrom, strDateTo);
               String orglist=Tree.getMembers(this, strTreeOrg, vars.getOrg());
               GridData= ProductionRequiredData.selectgrid(this, vars.getLanguage(), strProductId,strDateFrom,strDateTo,orglist);
-              //START
-              log4j.error("1234554321p_001");
               String strGrid1=grid.printGrid(this, vars, script, GridData);
-              log4j.error("1234554321p_002");
               strOutput=Replace.replace(strSkeleton, "@CONTENT@",  filterStructure + strGrid1 + buttonprocess);
-              log4j.error("1234554321p_003");
               script.addOnload("setProcessingMode('window', false);");
-              log4j.error("1234554321p_004");
               strOutput = script.doScript(strOutput, "",this,vars);
-              log4j.error("1234554321p_005");
               PrintWriter out = response.getWriter();
-              log4j.error("1234554321p_006");
               out.println(strOutput);
-              log4j.error("1234554321p_007");
               out.close();
-              log4j.error("1234554321p_008");
             }
         }    
 }
@@ -201,7 +191,6 @@ public class ProductionRequired  extends HttpSecureAppServlet {
             } catch (final Exception ignored) {
             }
             throw new ServletException(e);}
-      		log4j.error("1234554321p_end");
           }
        
         

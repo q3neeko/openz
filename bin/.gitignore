@@ -5,11 +5,10 @@
 /log4j.lcf
 /log4j.properties
 /org/
-/database/
 /deploy.wsdd
-/undeploy.wsdd
 /web.xml
+/database/
+/undeploy.wsdd
 /ad/
 /sql/
-/design/
 /com/
