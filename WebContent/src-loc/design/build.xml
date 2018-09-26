@@ -540,8 +540,8 @@ build.war: build a war file in the lib directory.
     <replace dir="${base.context}/src-loc/design">
         <include name="**/*.html"/>
         <include name="**/*.xml"/>
-        <replacefilter token=".js?v=20180926122957" value=".js?v=20180926122957?v=${TODAY_MY}"/>
-        <replacefilter token=".css?v=20180926122957" value=".css?v=20180926122957?v=${TODAY_MY}"/>
+        <replacefilter token=".js?v=20180926013833" value=".js?v=20180926013833?v=${TODAY_MY}"/>
+        <replacefilter token=".css?v=20180926013833" value=".css?v=20180926013833?v=${TODAY_MY}"/>
     </replace>
     
     
@@ -604,24 +604,24 @@ build.war: build a war file in the lib directory.
     <smartsprites rootdir="${skins.location}" documentrootdir="${skins.location}" outputdir="${skins.location}" cssfilesuffix="-sprite" csspropertyindent="  " loglevel="WARN" spritepngdepth="DIRECT" spritepngie6="false" />
     <move todir="${skins.location}">
       <fileset dir="${skins.location}">
-        <include name="*/*-sprite.css?v=20180926122957" />
-        <include name="*/*/*-sprite.css?v=20180926122957" />
+        <include name="*/*-sprite.css?v=20180926013833" />
+        <include name="*/*/*-sprite.css?v=20180926013833" />
       </fileset>
-      <mapper type="glob" from="*-sprite.css?v=20180926122957" to="*.css?v=20180926122957" />
+      <mapper type="glob" from="*-sprite.css?v=20180926013833" to="*.css?v=20180926013833" />
     </move>
   </target>
 
   <target name="minimizeJSandCSS" description="minimize JS and CSS files" if="minimizeJSandCSSbool">
     <yuicompress linebreak="300" warn="false" munge="yes" preserveallsemicolons="true" outputfolder="${base.context}/web" charset="UTF-8">
       <fileset dir="${base.web}">
-        <include name="**/*.js?v=20180926122957" />
-        <include name="**/*.css?v=20180926122957" />
+        <include name="**/*.js?v=20180926013833" />
+        <include name="**/*.css?v=20180926013833" />
         <!-- The following scripts break in minification process -->
-        <exclude name="**/js/dojo/src/docs.js?v=20180926122957" />
-        <exclude name="**/js/dojo/src/hostenv_jsc.js?v=20180926122957" />
-        <exclude name="**/js/jscalendar/lang/calendar-al.js?v=20180926122957" />
-        <exclude name="**/js/jscalendar/lang/calendar-he-utf8.js?v=20180926122957" />
-        <exclude name="**/js/jscalendar/lang/calendar-hr.js?v=20180926122957" />
+        <exclude name="**/js/dojo/src/docs.js?v=20180926013833" />
+        <exclude name="**/js/dojo/src/hostenv_jsc.js?v=20180926013833" />
+        <exclude name="**/js/jscalendar/lang/calendar-al.js?v=20180926013833" />
+        <exclude name="**/js/jscalendar/lang/calendar-he-utf8.js?v=20180926013833" />
+        <exclude name="**/js/jscalendar/lang/calendar-hr.js?v=20180926013833" />
         <exclude name="**/js/xinha/lang/**" />
         <exclude name="**/js/xinha/plugins/**" />
         <!-- dojotoolkit files are already compressd 
