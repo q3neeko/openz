@@ -1,0 +1,15 @@
+/ad/
+/build.xml
+/buildAD.xml
+/com/
+/database/
+/deploy.wsdd
+/design/
+/ehcache.xml
+/index.html
+/log4j.lcf
+/log4j.properties
+/org/
+/sql/
+/undeploy.wsdd
+/web.xml

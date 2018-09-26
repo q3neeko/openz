@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SqlClass id="class" name="ProductionUnnnededBCE7FC02CEDC4671AAE291F17EFAB2FCData" package="org.openbravo.erpWindows.org.openbravo.zsoft.serprod.ProductionUnneeded">
+  <SqlClassComment>WAD Generated class</SqlClassComment>
+
+  <SqlMethod name="selectEdit" type="preparedStatement" return="multiple">
+    <SqlMethodComment>Select for edit</SqlMethodComment>
+    <Sql><![CDATA[
+        SELECT to_char(mrp_production_unneeded.Created, ?) as created, 
+        (SELECT NAME FROM AD_USER u WHERE AD_USER_ID = mrp_production_unneeded.CreatedBy) as CreatedByR, 
+        to_char(mrp_production_unneeded.Updated, ?) as updated, 
+        to_char(mrp_production_unneeded.Updated, 'YYYYMMDDHH24MISS') as Updated_Time_Stamp,  
+        mrp_production_unneeded.UpdatedBy, 
+        (SELECT NAME FROM AD_USER u WHERE AD_USER_ID = mrp_production_unneeded.UpdatedBy) as UpdatedByR,
+        mrp_production_unneeded.M_Product_ID, 
+(CASE WHEN mrp_production_unneeded.M_Product_ID IS NULL THEN '' ELSE  (COALESCE(TO_CHAR(TO_CHAR(COALESCE(TO_CHAR(table1.Value), ''))),'')  || ' - ' || COALESCE(TO_CHAR(TO_CHAR(COALESCE(TO_CHAR((CASE WHEN tableTRL1.Name IS NULL THEN TO_CHAR(table1.Name) ELSE TO_CHAR(tableTRL1.Name) END)), ''))),'') ) END) AS M_Product_IDR, 
+mrp_production_unneeded.Description, 
+mrp_production_unneeded.C_Project_ID, 
+(CASE WHEN mrp_production_unneeded.C_Project_ID IS NULL THEN '' ELSE  (COALESCE(TO_CHAR(TO_CHAR(COALESCE(TO_CHAR(table2.Value), ''))),'')  || ' - ' || COALESCE(TO_CHAR(TO_CHAR(COALESCE(TO_CHAR(table2.Name), ''))),'') ) END) AS C_Project_IDR, 
+mrp_production_unneeded.C_Projecttask_ID, 
+(CASE WHEN mrp_production_unneeded.C_Projecttask_ID IS NULL THEN '' ELSE  (COALESCE(TO_CHAR(TO_CHAR(COALESCE(TO_CHAR(table4.Value), ''))),'')  || ' - ' || COALESCE(TO_CHAR(TO_CHAR(COALESCE(TO_CHAR(table4.Name), ''))),'')  || ' - ' || COALESCE(TO_CHAR(TO_CHAR(COALESCE(TO_CHAR(table3.Name), ''))),'') ) END) AS C_Projecttask_IDR, 
+mrp_production_unneeded.Qtyordered, 
+mrp_production_unneeded.Qtydelivered, 
+mrp_production_unneeded.Order_Min, 
+mrp_production_unneeded.Unnededqty, 
+mrp_production_unneeded.Dateordered, 
+mrp_production_unneeded.Datepromised, 
+mrp_production_unneeded.Qtyoptimal, 
+mrp_production_unneeded.Qtyonhand, 
+mrp_production_unneeded.Qtyinflow, 
+mrp_production_unneeded.Qtyoutflow, 
+mrp_production_unneeded.AD_Org_ID, 
+(CASE WHEN mrp_production_unneeded.AD_Org_ID IS NULL THEN '' ELSE  (COALESCE(TO_CHAR(TO_CHAR(COALESCE(TO_CHAR(table5.Name), ''))),'') ) END) AS AD_Org_IDR, 
+mrp_production_unneeded.Value, 
+mrp_production_unneeded.Line, 
+COALESCE(mrp_production_unneeded.Isactive, 'N') AS Isactive, 
+mrp_production_unneeded.MRP_Production_Unneeded_ID, 
+mrp_production_unneeded.AD_Client_ID, 
+ 
+        ? AS LANGUAGE 
+        FROM mrp_production_unneeded left join (select M_Product_ID, Value, Name from M_Product) table1 on (mrp_production_unneeded.M_Product_ID = table1.M_Product_ID) left join (select M_Product_ID,AD_Language, Name from M_Product_TRL) tableTRL1 on (table1.M_Product_ID = tableTRL1.M_Product_ID and tableTRL1.AD_Language = ?)  left join (select C_Project_ID, Value, Name from C_Project) table2 on (mrp_production_unneeded.C_Project_ID = table2.C_Project_ID) left join (select C_Projecttask_ID, C_Project_ID, Name from C_Projecttask) table3 on (mrp_production_unneeded.C_Projecttask_ID = table3.C_Projecttask_ID) left join (select C_Project_ID, Value, Name from C_Project) table4 on (table3.C_Project_ID = table4.C_Project_ID) left join (select AD_Org_ID, Name from AD_Org) table5 on (mrp_production_unneeded.AD_Org_ID = table5.AD_Org_ID)
+        WHERE 2=2 
+
+        AND 1=1 
+        AND mrp_production_unneeded.MRP_Production_Unneeded_ID = ? 
+        AND mrp_production_unneeded.AD_Client_ID IN ('1') 
+           AND mrp_production_unneeded.AD_Org_ID IN ('1') 
+    ]]></Sql>
+    <Parameter name="dateTimeFormat"></Parameter>
+    <Parameter name="dateTimeFormat"></Parameter>
+    
+    <Parameter name="paramLanguage"></Parameter>
+<Parameter name="paramLanguage"/>
+
+
+    <Parameter name="key"></Parameter>
+        <Parameter name="adUserClient" type="replace" optional="true" after="mrp_production_unneeded.AD_Client_ID IN (" text="'1'"/>
+        <Parameter name="adOrgClient" type="replace" optional="true" after="mrp_production_unneeded.AD_Org_ID IN (" text="'1'"/>
+
+    <Field name="adUserClient" value="void"></Field>
+    <Field name="adOrgClient" value="void"></Field>
+    <Field name="createdby" value="void"></Field>
+    
+    <Field name="trBgcolor" value="void"></Field>
+    <Field name="totalCount" value="void"></Field>
+    <Field name="dateTimeFormat" value=""></Field>
+  </SqlMethod>
+  
+  
+
+  <SqlMethod name="set" type="constant" return="multiple">
+      <SqlMethodComment>Create a registry</SqlMethodComment>
+      <Sql></Sql>
+
+<Parameter name="qtyoptimal"></Parameter><Parameter name="qtyonhand"></Parameter><Parameter name="qtyinflow"></Parameter><Parameter name="qtydelivered"></Parameter><Parameter name="createdby"></Parameter><Parameter name="createdbyr"></Parameter><Parameter name="cProjectId"></Parameter><Parameter name="line"></Parameter><Parameter name="adOrgId"></Parameter><Parameter name="updatedby"></Parameter><Parameter name="updatedbyr"></Parameter><Parameter name="mProductId"></Parameter><Parameter name="mProductIdr"></Parameter><Parameter name="adClientId"></Parameter><Parameter name="qtyordered"></Parameter><Parameter name="dateordered"></Parameter><Parameter name="unnededqty"></Parameter><Parameter name="cProjecttaskId"></Parameter><Parameter name="orderMin"></Parameter><Parameter name="description"></Parameter><Parameter name="mrpProductionUnneededId"></Parameter><Parameter name="datepromised"></Parameter><Parameter name="isactive"></Parameter><Parameter name="value"></Parameter><Parameter name="qtyoutflow"></Parameter>
+   </SqlMethod>
+
+
+
+
+
+
+   <SqlMethod name="selectDef750DD9A3911A47EE918B7C258C5FF28A_0" type="preparedStatement" return="String" default="">
+    <SqlMethodComment>Select for auxiliar field</SqlMethodComment>
+    <Sql><![CDATA[
+        SELECT  ( COALESCE(TO_CHAR(table1.Name), '') ) as Createdby FROM AD_User table1 WHERE table1.isActive='Y' AND table1.AD_User_ID = ?  
+    ]]></Sql>
+<Parameter name="CreatedbyR"/>
+  </SqlMethod>
+
+   <SqlMethod name="selectDefBA3DC91938734E3B9100837DE132DE03_1" type="preparedStatement" return="String" default="">
+    <SqlMethodComment>Select for auxiliar field</SqlMethodComment>
+    <Sql><![CDATA[
+        SELECT  ( COALESCE(TO_CHAR(table1.Name), '') ) as Updatedby FROM AD_User table1 WHERE table1.isActive='Y' AND table1.AD_User_ID = ?  
+    ]]></Sql>
+<Parameter name="UpdatedbyR"/>
+  </SqlMethod>
+
+   <SqlMethod name="selectDef223C910D475A458F8509187F1BF8B717_2" type="preparedStatement" return="String" default="">
+    <SqlMethodComment>Select for auxiliar field</SqlMethodComment>
+    <Sql><![CDATA[
+        SELECT  ( COALESCE(TO_CHAR(table1.Value), '')  || ' - ' || COALESCE(TO_CHAR(table1.Name), '') ) as M_Product_ID FROM M_Product table1 WHERE table1.isActive='Y' AND table1.M_Product_ID = ?  
+    ]]></Sql>
+<Parameter name="M_Product_IDR"/>
+  </SqlMethod>
+
+
+
+
+
+
+
+
+
+
+  <SqlMethod name="update" type="preparedStatement" return="rowCount" static="false" connection="true">
+    <Sql><![CDATA[
+        UPDATE mrp_production_unneeded
+        SET M_Product_ID = (?) , Description = (?) , C_Project_ID = (?) , C_Projecttask_ID = (?) , Qtyordered = TO_NUMBER(?) , Qtydelivered = TO_NUMBER(?) , Order_Min = TO_NUMBER(?) , Unnededqty = TO_NUMBER(?) , Dateordered = TO_DATE(?) , Datepromised = TO_DATE(?) , Qtyoptimal = TO_NUMBER(?) , Qtyonhand = TO_NUMBER(?) , Qtyinflow = TO_NUMBER(?) , Qtyoutflow = TO_NUMBER(?) , AD_Org_ID = (?) , Value = (?) , Line = TO_NUMBER(?) , Isactive = (?) , MRP_Production_Unneeded_ID = (?) , AD_Client_ID = (?) , updated = now(), updatedby = ? 
+        WHERE mrp_production_unneeded.MRP_Production_Unneeded_ID = ? 
+        
+        AND mrp_production_unneeded.AD_Client_ID IN ('1') 
+        AND mrp_production_unneeded.AD_Org_ID IN ('1') 
+    ]]></Sql>
+    <Parameter name="mProductId"></Parameter> <Parameter name="description"></Parameter> <Parameter name="cProjectId"></Parameter> <Parameter name="cProjecttaskId"></Parameter> <Parameter name="qtyordered"></Parameter> <Parameter name="qtydelivered"></Parameter> <Parameter name="orderMin"></Parameter> <Parameter name="unnededqty"></Parameter> <Parameter name="dateordered"></Parameter> <Parameter name="datepromised"></Parameter> <Parameter name="qtyoptimal"></Parameter> <Parameter name="qtyonhand"></Parameter> <Parameter name="qtyinflow"></Parameter> <Parameter name="qtyoutflow"></Parameter> <Parameter name="adOrgId"></Parameter> <Parameter name="value"></Parameter> <Parameter name="line"></Parameter> <Parameter name="isactive"></Parameter> <Parameter name="mrpProductionUnneededId"></Parameter> <Parameter name="adClientId"></Parameter> 
+    <Parameter name="updatedby"></Parameter>
+    <Parameter id="paramKey" name="mrpProductionUnneededId"></Parameter>
+    
+    
+        <Parameter name="adUserClient" type="replace" optional="true" after="mrp_production_unneeded.AD_Client_ID IN (" text="'1'"/>
+        <Parameter name="adOrgClient" type="replace" optional="true" after="mrp_production_unneeded.AD_Org_ID IN (" text="'1'"/>
+  </SqlMethod>
+
+  <SqlMethod name="insert" type="preparedStatement" return="rowCount" static="false" connection="true">
+    <Sql><![CDATA[
+        INSERT INTO mrp_production_unneeded 
+        (M_Product_ID, Description, C_Project_ID, C_Projecttask_ID, Qtyordered, Qtydelivered, Order_Min, Unnededqty, Dateordered, Datepromised, Qtyoptimal, Qtyonhand, Qtyinflow, Qtyoutflow, AD_Org_ID, Value, Line, Isactive, MRP_Production_Unneeded_ID, AD_Client_ID, created, createdby, updated, updatedBy)
+        VALUES ((?), (?), (?), (?), TO_NUMBER(?), TO_NUMBER(?), TO_NUMBER(?), TO_NUMBER(?), TO_DATE(?), TO_DATE(?), TO_NUMBER(?), TO_NUMBER(?), TO_NUMBER(?), TO_NUMBER(?), (?), (?), TO_NUMBER(?), (?), (?), (?), now(), ?, now(), ?)
+    ]]></Sql>
+    <Parameter name="mProductId"></Parameter> <Parameter name="description"></Parameter> <Parameter name="cProjectId"></Parameter> <Parameter name="cProjecttaskId"></Parameter> <Parameter name="qtyordered"></Parameter> <Parameter name="qtydelivered"></Parameter> <Parameter name="orderMin"></Parameter> <Parameter name="unnededqty"></Parameter> <Parameter name="dateordered"></Parameter> <Parameter name="datepromised"></Parameter> <Parameter name="qtyoptimal"></Parameter> <Parameter name="qtyonhand"></Parameter> <Parameter name="qtyinflow"></Parameter> <Parameter name="qtyoutflow"></Parameter> <Parameter name="adOrgId"></Parameter> <Parameter name="value"></Parameter> <Parameter name="line"></Parameter> <Parameter name="isactive"></Parameter> <Parameter name="mrpProductionUnneededId"></Parameter> <Parameter name="adClientId"></Parameter> 
+    <Parameter name="createdby"></Parameter>
+    <Parameter name="updatedby"></Parameter>
+  </SqlMethod>
+
+  <SqlMethod name="delete" type="preparedStatement" return="rowCount">
+    <Sql><![CDATA[
+        DELETE FROM mrp_production_unneeded
+        WHERE mrp_production_unneeded.MRP_Production_Unneeded_ID = ? 
+        
+        AND mrp_production_unneeded.AD_Client_ID IN ('1') 
+        AND mrp_production_unneeded.AD_Org_ID IN ('1') 
+    ]]></Sql>
+    <Parameter name="param1"></Parameter>
+    
+        <Parameter name="adUserClient" type="replace" optional="true" after="mrp_production_unneeded.AD_Client_ID IN (" text="'1'"/>
+        <Parameter name="adOrgClient" type="replace" optional="true" after="mrp_production_unneeded.AD_Org_ID IN (" text="'1'"/>
+  </SqlMethod>
+
+  <SqlMethod name="deleteTransactional" connection="true" type="preparedStatement" return="rowCount">
+    <Sql><![CDATA[
+        DELETE FROM mrp_production_unneeded
+        WHERE mrp_production_unneeded.MRP_Production_Unneeded_ID = ? 
+        
+    ]]></Sql>
+    <Parameter name="param1"></Parameter>
+    
+  </SqlMethod>
+  
+  <SqlMethod name="selectOrg" type="preparedStatement" return="string">
+    <SqlMethodComment>Select for relation</SqlMethodComment>
+    <Sql><![CDATA[ 
+        SELECT AD_ORG_ID
+          FROM mrp_production_unneeded
+         WHERE mrp_production_unneeded.MRP_Production_Unneeded_ID = ? 
+    ]]></Sql>
+    <Parameter name="id"></Parameter>
+  </SqlMethod>
+  
+  <SqlMethod name="getCurrentDBTimestamp" type="preparedStatement" return="string">
+    <Sql><![CDATA[ 
+        SELECT to_char(Updated, 'YYYYMMDDHH24MISS') as Updated_Time_Stamp
+          FROM mrp_production_unneeded
+         WHERE mrp_production_unneeded.MRP_Production_Unneeded_ID = ? 
+    ]]></Sql>
+    <Parameter name="id"></Parameter>
+  </SqlMethod>
+</SqlClass>

@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SqlClass id="class" name="BuiltinSerialsandBatches2482264048D7454CA311DC1BB2E54A60Data" package="org.openbravo.erpWindows.org.zsoft.serial.BatchNumberTracking">
+  <SqlClassComment>WAD Generated class</SqlClassComment>
+
+  <SqlMethod name="selectEdit" type="preparedStatement" return="multiple">
+    <SqlMethodComment>Select for edit</SqlMethodComment>
+    <Sql><![CDATA[
+        SELECT to_char(snr_builtinbatches_v.Created, ?) as created, 
+        (SELECT NAME FROM AD_USER u WHERE AD_USER_ID = snr_builtinbatches_v.CreatedBy) as CreatedByR, 
+        to_char(snr_builtinbatches_v.Updated, ?) as updated, 
+        to_char(snr_builtinbatches_v.Updated, 'YYYYMMDDHH24MISS') as Updated_Time_Stamp,  
+        snr_builtinbatches_v.UpdatedBy, 
+        (SELECT NAME FROM AD_USER u WHERE AD_USER_ID = snr_builtinbatches_v.UpdatedBy) as UpdatedByR,
+        snr_builtinbatches_v.SNR_Batchcurrentbom_V_ID, 
+(CASE WHEN snr_builtinbatches_v.SNR_Batchcurrentbom_V_ID IS NULL THEN '' ELSE  (COALESCE(TO_CHAR(TO_CHAR(COALESCE(TO_CHAR(table1.Batches), ''))),'') ) END) AS SNR_Batchcurrentbom_V_IDR, 
+snr_builtinbatches_v.Batch, 
+(CASE WHEN snr_builtinbatches_v.Batch IS NULL THEN '' ELSE  ( COALESCE(TO_CHAR(TO_CHAR(COALESCE(TO_CHAR(table2.Batchnumber), ''))),'') ) END) AS BatchR, 
+snr_builtinbatches_v.SNR_Masterdata_ID, 
+(CASE WHEN snr_builtinbatches_v.SNR_Masterdata_ID IS NULL THEN '' ELSE  (COALESCE(TO_CHAR(TO_CHAR(COALESCE(TO_CHAR(table4.Value), ''))),'')  || ' - ' || COALESCE(TO_CHAR(TO_CHAR(COALESCE(TO_CHAR((CASE WHEN tableTRL4.Name IS NULL THEN TO_CHAR(table4.Name) ELSE TO_CHAR(tableTRL4.Name) END)), ''))),'')  || ' - ' || COALESCE(TO_CHAR(TO_CHAR(COALESCE(TO_CHAR(table3.Serialnumber), ''))),'') ) END) AS SNR_Masterdata_IDR, 
+snr_builtinbatches_v.Qty, 
+snr_builtinbatches_v.AD_Client_ID, 
+snr_builtinbatches_v.AD_Org_ID, 
+snr_builtinbatches_v.SNR_Builtinbatches_V_ID, 
+COALESCE(snr_builtinbatches_v.Isactive, 'N') AS Isactive, 
+ 
+        ? AS LANGUAGE 
+        FROM snr_builtinbatches_v left join (select SNR_Batchcurrentbom_V_ID, Batches from SNR_Batchcurrentbom_V) table1 on (snr_builtinbatches_v.SNR_Batchcurrentbom_V_ID = table1.SNR_Batchcurrentbom_V_ID) left join (select SNR_Batchmasterdata_ID, Batchnumber from snr_batchmasterdata) table2 on (snr_builtinbatches_v.Batch =  table2.SNR_Batchmasterdata_ID) left join (select SNR_Masterdata_ID, M_Product_ID, Serialnumber from SNR_Masterdata) table3 on (snr_builtinbatches_v.SNR_Masterdata_ID = table3.SNR_Masterdata_ID) left join (select M_Product_ID, Value, Name from M_Product) table4 on (table3.M_Product_ID = table4.M_Product_ID) left join (select M_Product_ID,AD_Language, Name from M_Product_TRL) tableTRL4 on (table4.M_Product_ID = tableTRL4.M_Product_ID and tableTRL4.AD_Language = ?) 
+        WHERE 2=2 
+
+        AND 1=1 
+        AND snr_builtinbatches_v.SNR_Builtinbatches_V_ID = ? 
+        AND snr_builtinbatches_v.AD_Client_ID IN ('1') 
+           AND snr_builtinbatches_v.AD_Org_ID IN ('1') 
+    ]]></Sql>
+    <Parameter name="dateTimeFormat"></Parameter>
+    <Parameter name="dateTimeFormat"></Parameter>
+    
+    <Parameter name="paramLanguage"></Parameter>
+<Parameter name="paramLanguage"/>
+
+    <Parameter name="snrBatchcurrentbomVId" optional="true" after="AND 1=1 " id="paramKeyParent"> AND snr_builtinbatches_v.SNR_Batchcurrentbom_V_ID = ? </Parameter>
+    <Parameter name="key"></Parameter>
+        <Parameter name="adUserClient" type="replace" optional="true" after="snr_builtinbatches_v.AD_Client_ID IN (" text="'1'"/>
+        <Parameter name="adOrgClient" type="replace" optional="true" after="snr_builtinbatches_v.AD_Org_ID IN (" text="'1'"/>
+
+    <Field name="adUserClient" value="void"></Field>
+    <Field name="adOrgClient" value="void"></Field>
+    <Field name="createdby" value="void"></Field>
+    
+    <Field name="trBgcolor" value="void"></Field>
+    <Field name="totalCount" value="void"></Field>
+    <Field name="dateTimeFormat" value=""></Field>
+  </SqlMethod>
+  
+  
+
+  <SqlMethod name="set" type="constant" return="multiple">
+      <SqlMethodComment>Create a registry</SqlMethodComment>
+      <Sql></Sql>
+    <Parameter name="snrBatchcurrentbomVId" id="paramKeyParent"></Parameter>
+<Parameter name="isactive"></Parameter><Parameter name="adOrgId"></Parameter><Parameter name="batch"></Parameter><Parameter name="adClientId"></Parameter><Parameter name="qty"></Parameter><Parameter name="snrMasterdataId"></Parameter><Parameter name="createdby"></Parameter><Parameter name="createdbyr"></Parameter><Parameter name="updatedby"></Parameter><Parameter name="updatedbyr"></Parameter><Parameter name="snrBuiltinbatchesVId"></Parameter>
+   </SqlMethod>
+
+
+
+
+
+
+   <SqlMethod name="selectDef8FF92EBB21BE4C5F883B6CA7BA3AA182_0" type="preparedStatement" return="String" default="">
+    <SqlMethodComment>Select for auxiliar field</SqlMethodComment>
+    <Sql><![CDATA[
+        SELECT  ( COALESCE(TO_CHAR(table1.Name), '') ) as Createdby FROM AD_User table1 WHERE table1.isActive='Y' AND table1.AD_User_ID = ?  
+    ]]></Sql>
+<Parameter name="CreatedbyR"/>
+  </SqlMethod>
+
+   <SqlMethod name="selectDef2C90FF7192324495B733A6953183BE2F_1" type="preparedStatement" return="String" default="">
+    <SqlMethodComment>Select for auxiliar field</SqlMethodComment>
+    <Sql><![CDATA[
+        SELECT  ( COALESCE(TO_CHAR(table1.Name), '') ) as Updatedby FROM AD_User table1 WHERE table1.isActive='Y' AND table1.AD_User_ID = ?  
+    ]]></Sql>
+<Parameter name="UpdatedbyR"/>
+  </SqlMethod>
+
+
+
+  <SqlMethod name="selectParentID" type="preparedStatement" return="String" default="">
+    <SqlMethodComment>return the parent ID</SqlMethodComment>
+    <Sql><![CDATA[
+        SELECT snr_builtinbatches_v.SNR_Batchcurrentbom_V_ID AS NAME
+        FROM snr_builtinbatches_v
+        WHERE snr_builtinbatches_v.SNR_Builtinbatches_V_ID = ?
+    ]]></Sql>
+    <Parameter name="key"></Parameter>
+  </SqlMethod>
+
+   <SqlMethod name="selectParent" type="preparedStatement" return="String" default="">
+    <SqlMethodComment>Select for parent field</SqlMethodComment>
+    <Sql><![CDATA[
+        SELECT (TO_CHAR(COALESCE(TO_CHAR(table1.Batches), ''))) AS NAME FROM snr_batchcurrentbom_v left join (select SNR_Batchcurrentbom_V_ID, Batches from SNR_Batchcurrentbom_V) table1 on (snr_batchcurrentbom_v.SNR_Batchcurrentbom_V_ID = table1.SNR_Batchcurrentbom_V_ID) WHERE snr_batchcurrentbom_v.SNR_Batchcurrentbom_V_ID = ?  
+    ]]></Sql>
+<Parameter name="snrBatchcurrentbomVId"/>
+
+  </SqlMethod>
+
+
+
+   <SqlMethod name="selectParentTrl" type="preparedStatement" return="String" default="">
+    <SqlMethodComment>Select for parent field</SqlMethodComment>
+    <Sql><![CDATA[
+        SELECT (TO_CHAR(COALESCE(TO_CHAR(table1.Batches), ''))) AS NAME FROM snr_batchcurrentbom_v left join (select SNR_Batchcurrentbom_V_ID, Batches from SNR_Batchcurrentbom_V) table1 on (snr_batchcurrentbom_v.SNR_Batchcurrentbom_V_ID = table1.SNR_Batchcurrentbom_V_ID) WHERE snr_batchcurrentbom_v.SNR_Batchcurrentbom_V_ID = ?  
+    ]]></Sql>
+<Parameter name="snrBatchcurrentbomVId"/>
+
+  </SqlMethod>
+
+
+
+
+
+
+
+
+  <SqlMethod name="update" type="preparedStatement" return="rowCount" static="false" connection="true">
+    <Sql><![CDATA[
+        UPDATE snr_builtinbatches_v
+        SET SNR_Batchcurrentbom_V_ID = (?) , Batch = (?) , SNR_Masterdata_ID = (?) , Qty = TO_NUMBER(?) , AD_Client_ID = (?) , AD_Org_ID = (?) , SNR_Builtinbatches_V_ID = (?) , Isactive = (?) , updated = now(), updatedby = ? 
+        WHERE snr_builtinbatches_v.SNR_Builtinbatches_V_ID = ? 
+                 AND snr_builtinbatches_v.SNR_Batchcurrentbom_V_ID = ? 
+        AND snr_builtinbatches_v.AD_Client_ID IN ('1') 
+        AND snr_builtinbatches_v.AD_Org_ID IN ('1') 
+    ]]></Sql>
+    <Parameter name="snrBatchcurrentbomVId"></Parameter> <Parameter name="batch"></Parameter> <Parameter name="snrMasterdataId"></Parameter> <Parameter name="qty"></Parameter> <Parameter name="adClientId"></Parameter> <Parameter name="adOrgId"></Parameter> <Parameter name="snrBuiltinbatchesVId"></Parameter> <Parameter name="isactive"></Parameter> 
+    <Parameter name="updatedby"></Parameter>
+    <Parameter id="paramKey" name="snrBuiltinbatchesVId"></Parameter>
+    
+    <Parameter name="snrBatchcurrentbomVId" id="paramKeyParent"></Parameter>
+        <Parameter name="adUserClient" type="replace" optional="true" after="snr_builtinbatches_v.AD_Client_ID IN (" text="'1'"/>
+        <Parameter name="adOrgClient" type="replace" optional="true" after="snr_builtinbatches_v.AD_Org_ID IN (" text="'1'"/>
+  </SqlMethod>
+
+  <SqlMethod name="insert" type="preparedStatement" return="rowCount" static="false" connection="true">
+    <Sql><![CDATA[
+        INSERT INTO snr_builtinbatches_v 
+        (SNR_Batchcurrentbom_V_ID, Batch, SNR_Masterdata_ID, Qty, AD_Client_ID, AD_Org_ID, SNR_Builtinbatches_V_ID, Isactive, created, createdby, updated, updatedBy)
+        VALUES ((?), (?), (?), TO_NUMBER(?), (?), (?), (?), (?), now(), ?, now(), ?)
+    ]]></Sql>
+    <Parameter name="snrBatchcurrentbomVId"></Parameter> <Parameter name="batch"></Parameter> <Parameter name="snrMasterdataId"></Parameter> <Parameter name="qty"></Parameter> <Parameter name="adClientId"></Parameter> <Parameter name="adOrgId"></Parameter> <Parameter name="snrBuiltinbatchesVId"></Parameter> <Parameter name="isactive"></Parameter> 
+    <Parameter name="createdby"></Parameter>
+    <Parameter name="updatedby"></Parameter>
+  </SqlMethod>
+
+  <SqlMethod name="delete" type="preparedStatement" return="rowCount">
+    <Sql><![CDATA[
+        DELETE FROM snr_builtinbatches_v
+        WHERE snr_builtinbatches_v.SNR_Builtinbatches_V_ID = ? 
+                 AND snr_builtinbatches_v.SNR_Batchcurrentbom_V_ID = ? 
+        AND snr_builtinbatches_v.AD_Client_ID IN ('1') 
+        AND snr_builtinbatches_v.AD_Org_ID IN ('1') 
+    ]]></Sql>
+    <Parameter name="param1"></Parameter>
+        <Parameter name="snrBatchcurrentbomVId" id="paramKeyParent"></Parameter>
+        <Parameter name="adUserClient" type="replace" optional="true" after="snr_builtinbatches_v.AD_Client_ID IN (" text="'1'"/>
+        <Parameter name="adOrgClient" type="replace" optional="true" after="snr_builtinbatches_v.AD_Org_ID IN (" text="'1'"/>
+  </SqlMethod>
+
+  <SqlMethod name="deleteTransactional" connection="true" type="preparedStatement" return="rowCount">
+    <Sql><![CDATA[
+        DELETE FROM snr_builtinbatches_v
+        WHERE snr_builtinbatches_v.SNR_Builtinbatches_V_ID = ? 
+                 AND snr_builtinbatches_v.SNR_Batchcurrentbom_V_ID = ? 
+    ]]></Sql>
+    <Parameter name="param1"></Parameter>
+        <Parameter name="snrBatchcurrentbomVId" id="paramKeyParent"></Parameter>
+  </SqlMethod>
+  
+  <SqlMethod name="selectOrg" type="preparedStatement" return="string">
+    <SqlMethodComment>Select for relation</SqlMethodComment>
+    <Sql><![CDATA[ 
+        SELECT AD_ORG_ID
+          FROM snr_builtinbatches_v
+         WHERE snr_builtinbatches_v.SNR_Builtinbatches_V_ID = ? 
+    ]]></Sql>
+    <Parameter name="id"></Parameter>
+  </SqlMethod>
+  
+  <SqlMethod name="getCurrentDBTimestamp" type="preparedStatement" return="string">
+    <Sql><![CDATA[ 
+        SELECT to_char(Updated, 'YYYYMMDDHH24MISS') as Updated_Time_Stamp
+          FROM snr_builtinbatches_v
+         WHERE snr_builtinbatches_v.SNR_Builtinbatches_V_ID = ? 
+    ]]></Sql>
+    <Parameter name="id"></Parameter>
+  </SqlMethod>
+</SqlClass>

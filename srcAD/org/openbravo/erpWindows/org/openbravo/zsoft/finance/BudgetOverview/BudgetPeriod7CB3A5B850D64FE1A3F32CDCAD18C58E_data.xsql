@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SqlClass id="class" name="BudgetPeriod7CB3A5B850D64FE1A3F32CDCAD18C58EData" package="org.openbravo.erpWindows.org.openbravo.zsoft.finance.BudgetOverview">
+  <SqlClassComment>WAD Generated class</SqlClassComment>
+
+  <SqlMethod name="selectEdit" type="preparedStatement" return="multiple">
+    <SqlMethodComment>Select for edit</SqlMethodComment>
+    <Sql><![CDATA[
+        SELECT to_char(zsfi_budgetperiod.Created, ?) as created, 
+        (SELECT NAME FROM AD_USER u WHERE AD_USER_ID = zsfi_budgetperiod.CreatedBy) as CreatedByR, 
+        to_char(zsfi_budgetperiod.Updated, ?) as updated, 
+        to_char(zsfi_budgetperiod.Updated, 'YYYYMMDDHH24MISS') as Updated_Time_Stamp,  
+        zsfi_budgetperiod.UpdatedBy, 
+        (SELECT NAME FROM AD_USER u WHERE AD_USER_ID = zsfi_budgetperiod.UpdatedBy) as UpdatedByR,
+        zsfi_budgetperiod.Zsfi_Budget_ID, 
+(CASE WHEN zsfi_budgetperiod.Zsfi_Budget_ID IS NULL THEN '' ELSE  (COALESCE(TO_CHAR(TO_CHAR(COALESCE(TO_CHAR(table2.Value), ''))),'')  || ' - ' || COALESCE(TO_CHAR(TO_CHAR(COALESCE(TO_CHAR((CASE WHEN tableTRL2.Name IS NULL THEN TO_CHAR(table2.Name) ELSE TO_CHAR(tableTRL2.Name) END)), ''))),'')  || ' - ' || COALESCE(TO_CHAR(TO_CHAR(COALESCE(TO_CHAR(table3.Name), ''))),'')  || ' - ' || COALESCE(TO_CHAR(TO_CHAR(COALESCE(TO_CHAR(table4.Year), ''))),'') ) END) AS Zsfi_Budget_IDR, 
+zsfi_budgetperiod.C_Period_ID, 
+(CASE WHEN zsfi_budgetperiod.C_Period_ID IS NULL THEN '' ELSE  (COALESCE(TO_CHAR(TO_CHAR(COALESCE(TO_CHAR(table5.Name), ''))),'') ) END) AS C_Period_IDR, 
+zsfi_budgetperiod.Budget, 
+COALESCE(zsfi_budgetperiod.Isactive, 'N') AS Isactive, 
+zsfi_budgetperiod.Dateto, 
+zsfi_budgetperiod.Zsfi_Budgetperiod_ID, 
+zsfi_budgetperiod.AD_Org_ID, 
+zsfi_budgetperiod.AD_Client_ID, 
+zsfi_budgetperiod.Datefrom, 
+ 
+        ? AS LANGUAGE 
+        FROM zsfi_budgetperiod left join (select Zsfi_Budget_ID, C_Elementvalue_ID, AD_Org_ID, C_Year_ID from Zsfi_Budget) table1 on (zsfi_budgetperiod.Zsfi_Budget_ID = table1.Zsfi_Budget_ID) left join (select C_Elementvalue_ID, Value, Name from C_Elementvalue) table2 on (table1.C_Elementvalue_ID = table2.C_Elementvalue_ID) left join (select C_ElementValue_ID,AD_Language, Name from C_ElementValue_TRL) tableTRL2 on (table2.C_ElementValue_ID = tableTRL2.C_ElementValue_ID and tableTRL2.AD_Language = ?)  left join (select AD_Org_ID, Name from AD_Org) table3 on (table1.AD_Org_ID = table3.AD_Org_ID) left join (select C_Year_ID, Year from C_Year) table4 on (table1.C_Year_ID = table4.C_Year_ID) left join (select C_Period_ID, Name from C_Period) table5 on (zsfi_budgetperiod.C_Period_ID = table5.C_Period_ID)
+        WHERE 2=2 
+
+        AND 1=1 
+        AND zsfi_budgetperiod.Zsfi_Budgetperiod_ID = ? 
+        AND zsfi_budgetperiod.AD_Client_ID IN ('1') 
+           AND zsfi_budgetperiod.AD_Org_ID IN ('1') 
+    ]]></Sql>
+    <Parameter name="dateTimeFormat"></Parameter>
+    <Parameter name="dateTimeFormat"></Parameter>
+    
+    <Parameter name="paramLanguage"></Parameter>
+<Parameter name="paramLanguage"/>
+
+    <Parameter name="zsfiBudgetId" optional="true" after="AND 1=1 " id="paramKeyParent"> AND zsfi_budgetperiod.Zsfi_Budget_ID = ? </Parameter>
+    <Parameter name="key"></Parameter>
+        <Parameter name="adUserClient" type="replace" optional="true" after="zsfi_budgetperiod.AD_Client_ID IN (" text="'1'"/>
+        <Parameter name="adOrgClient" type="replace" optional="true" after="zsfi_budgetperiod.AD_Org_ID IN (" text="'1'"/>
+
+    <Field name="adUserClient" value="void"></Field>
+    <Field name="adOrgClient" value="void"></Field>
+    <Field name="createdby" value="void"></Field>
+    
+    <Field name="trBgcolor" value="void"></Field>
+    <Field name="totalCount" value="void"></Field>
+    <Field name="dateTimeFormat" value=""></Field>
+  </SqlMethod>
+  
+  
+
+  <SqlMethod name="set" type="constant" return="multiple">
+      <SqlMethodComment>Create a registry</SqlMethodComment>
+      <Sql></Sql>
+    <Parameter name="zsfiBudgetId" id="paramKeyParent"></Parameter>
+<Parameter name="cPeriodId"></Parameter><Parameter name="adClientId"></Parameter><Parameter name="zsfiBudgetperiodId"></Parameter><Parameter name="adOrgId"></Parameter><Parameter name="createdby"></Parameter><Parameter name="createdbyr"></Parameter><Parameter name="budget"></Parameter><Parameter name="dateto"></Parameter><Parameter name="updatedby"></Parameter><Parameter name="updatedbyr"></Parameter><Parameter name="datefrom"></Parameter><Parameter name="isactive"></Parameter>
+   </SqlMethod>
+
+
+
+
+
+
+   <SqlMethod name="selectDef1852C3A5C36447C4B01C396F95FD3148_0" type="preparedStatement" return="String" default="">
+    <SqlMethodComment>Select for auxiliar field</SqlMethodComment>
+    <Sql><![CDATA[
+        SELECT  ( COALESCE(TO_CHAR(table1.Name), '') ) as Createdby FROM AD_User table1 WHERE table1.isActive='Y' AND table1.AD_User_ID = ?  
+    ]]></Sql>
+<Parameter name="CreatedbyR"/>
+  </SqlMethod>
+
+   <SqlMethod name="selectDefC4715EB57AF941A294E3149A86DC9C24_1" type="preparedStatement" return="String" default="">
+    <SqlMethodComment>Select for auxiliar field</SqlMethodComment>
+    <Sql><![CDATA[
+        SELECT  ( COALESCE(TO_CHAR(table1.Name), '') ) as Updatedby FROM AD_User table1 WHERE table1.isActive='Y' AND table1.AD_User_ID = ?  
+    ]]></Sql>
+<Parameter name="UpdatedbyR"/>
+  </SqlMethod>
+
+
+
+  <SqlMethod name="selectParentID" type="preparedStatement" return="String" default="">
+    <SqlMethodComment>return the parent ID</SqlMethodComment>
+    <Sql><![CDATA[
+        SELECT zsfi_budgetperiod.Zsfi_Budget_ID AS NAME
+        FROM zsfi_budgetperiod
+        WHERE zsfi_budgetperiod.Zsfi_Budgetperiod_ID = ?
+    ]]></Sql>
+    <Parameter name="key"></Parameter>
+  </SqlMethod>
+
+   <SqlMethod name="selectParent" type="preparedStatement" return="String" default="">
+    <SqlMethodComment>Select for parent field</SqlMethodComment>
+    <Sql><![CDATA[
+        SELECT (TO_CHAR(COALESCE(TO_CHAR(table2.Value), '')) || ' - ' || TO_CHAR(COALESCE(TO_CHAR((CASE WHEN tableTRL2.Name IS NULL THEN TO_CHAR(table2.Name) ELSE TO_CHAR(tableTRL2.Name) END)), '')) || ' - ' || TO_CHAR(COALESCE(TO_CHAR(table3.Name), '')) || ' - ' || TO_CHAR(COALESCE(TO_CHAR(table4.Year), ''))) AS NAME FROM zsfi_budget left join (select Zsfi_Budget_ID, C_Elementvalue_ID, AD_Org_ID, C_Year_ID from Zsfi_Budget) table1 on (zsfi_budget.Zsfi_Budget_ID = table1.Zsfi_Budget_ID) left join (select C_Elementvalue_ID, Value, Name from C_Elementvalue) table2 on (table1.C_Elementvalue_ID = table2.C_Elementvalue_ID) left join (select C_ElementValue_ID,AD_Language, Name from C_ElementValue_TRL) tableTRL2 on (table2.C_ElementValue_ID = tableTRL2.C_ElementValue_ID and tableTRL2.AD_Language = ?)  left join (select AD_Org_ID, Name from AD_Org) table3 on (table1.AD_Org_ID = table3.AD_Org_ID) left join (select C_Year_ID, Year from C_Year) table4 on (table1.C_Year_ID = table4.C_Year_ID) WHERE zsfi_budget.Zsfi_Budget_ID = ?  
+    ]]></Sql>
+<Parameter name="paramLanguage"/>
+<Parameter name="zsfiBudgetId"/>
+
+  </SqlMethod>
+
+
+
+   <SqlMethod name="selectParentTrl" type="preparedStatement" return="String" default="">
+    <SqlMethodComment>Select for parent field</SqlMethodComment>
+    <Sql><![CDATA[
+        SELECT (TO_CHAR(COALESCE(TO_CHAR(table2.Value), '')) || ' - ' || TO_CHAR(COALESCE(TO_CHAR((CASE WHEN tableTRL2.Name IS NULL THEN TO_CHAR(table2.Name) ELSE TO_CHAR(tableTRL2.Name) END)), '')) || ' - ' || TO_CHAR(COALESCE(TO_CHAR(table3.Name), '')) || ' - ' || TO_CHAR(COALESCE(TO_CHAR(table4.Year), ''))) AS NAME FROM zsfi_budget left join (select Zsfi_Budget_ID, C_Elementvalue_ID, AD_Org_ID, C_Year_ID from Zsfi_Budget) table1 on (zsfi_budget.Zsfi_Budget_ID = table1.Zsfi_Budget_ID) left join (select C_Elementvalue_ID, Value, Name from C_Elementvalue) table2 on (table1.C_Elementvalue_ID = table2.C_Elementvalue_ID) left join (select C_ElementValue_ID,AD_Language, Name from C_ElementValue_TRL) tableTRL2 on (table2.C_ElementValue_ID = tableTRL2.C_ElementValue_ID and tableTRL2.AD_Language = ?)  left join (select AD_Org_ID, Name from AD_Org) table3 on (table1.AD_Org_ID = table3.AD_Org_ID) left join (select C_Year_ID, Year from C_Year) table4 on (table1.C_Year_ID = table4.C_Year_ID) WHERE zsfi_budget.Zsfi_Budget_ID = ?  
+    ]]></Sql>
+<Parameter name="paramLanguage"/>
+<Parameter name="zsfiBudgetId"/>
+
+  </SqlMethod>
+
+
+
+
+
+
+
+
+  <SqlMethod name="update" type="preparedStatement" return="rowCount" static="false" connection="true">
+    <Sql><![CDATA[
+        UPDATE zsfi_budgetperiod
+        SET Zsfi_Budget_ID = (?) , C_Period_ID = (?) , Budget = TO_NUMBER(?) , Isactive = (?) , Dateto = TO_DATE(?) , Zsfi_Budgetperiod_ID = (?) , AD_Org_ID = (?) , AD_Client_ID = (?) , Datefrom = TO_DATE(?) , updated = now(), updatedby = ? 
+        WHERE zsfi_budgetperiod.Zsfi_Budgetperiod_ID = ? 
+                 AND zsfi_budgetperiod.Zsfi_Budget_ID = ? 
+        AND zsfi_budgetperiod.AD_Client_ID IN ('1') 
+        AND zsfi_budgetperiod.AD_Org_ID IN ('1') 
+    ]]></Sql>
+    <Parameter name="zsfiBudgetId"></Parameter> <Parameter name="cPeriodId"></Parameter> <Parameter name="budget"></Parameter> <Parameter name="isactive"></Parameter> <Parameter name="dateto"></Parameter> <Parameter name="zsfiBudgetperiodId"></Parameter> <Parameter name="adOrgId"></Parameter> <Parameter name="adClientId"></Parameter> <Parameter name="datefrom"></Parameter> 
+    <Parameter name="updatedby"></Parameter>
+    <Parameter id="paramKey" name="zsfiBudgetperiodId"></Parameter>
+    
+    <Parameter name="zsfiBudgetId" id="paramKeyParent"></Parameter>
+        <Parameter name="adUserClient" type="replace" optional="true" after="zsfi_budgetperiod.AD_Client_ID IN (" text="'1'"/>
+        <Parameter name="adOrgClient" type="replace" optional="true" after="zsfi_budgetperiod.AD_Org_ID IN (" text="'1'"/>
+  </SqlMethod>
+
+  <SqlMethod name="insert" type="preparedStatement" return="rowCount" static="false" connection="true">
+    <Sql><![CDATA[
+        INSERT INTO zsfi_budgetperiod 
+        (Zsfi_Budget_ID, C_Period_ID, Budget, Isactive, Dateto, Zsfi_Budgetperiod_ID, AD_Org_ID, AD_Client_ID, Datefrom, created, createdby, updated, updatedBy)
+        VALUES ((?), (?), TO_NUMBER(?), (?), TO_DATE(?), (?), (?), (?), TO_DATE(?), now(), ?, now(), ?)
+    ]]></Sql>
+    <Parameter name="zsfiBudgetId"></Parameter> <Parameter name="cPeriodId"></Parameter> <Parameter name="budget"></Parameter> <Parameter name="isactive"></Parameter> <Parameter name="dateto"></Parameter> <Parameter name="zsfiBudgetperiodId"></Parameter> <Parameter name="adOrgId"></Parameter> <Parameter name="adClientId"></Parameter> <Parameter name="datefrom"></Parameter> 
+    <Parameter name="createdby"></Parameter>
+    <Parameter name="updatedby"></Parameter>
+  </SqlMethod>
+
+  <SqlMethod name="delete" type="preparedStatement" return="rowCount">
+    <Sql><![CDATA[
+        DELETE FROM zsfi_budgetperiod
+        WHERE zsfi_budgetperiod.Zsfi_Budgetperiod_ID = ? 
+                 AND zsfi_budgetperiod.Zsfi_Budget_ID = ? 
+        AND zsfi_budgetperiod.AD_Client_ID IN ('1') 
+        AND zsfi_budgetperiod.AD_Org_ID IN ('1') 
+    ]]></Sql>
+    <Parameter name="param1"></Parameter>
+        <Parameter name="zsfiBudgetId" id="paramKeyParent"></Parameter>
+        <Parameter name="adUserClient" type="replace" optional="true" after="zsfi_budgetperiod.AD_Client_ID IN (" text="'1'"/>
+        <Parameter name="adOrgClient" type="replace" optional="true" after="zsfi_budgetperiod.AD_Org_ID IN (" text="'1'"/>
+  </SqlMethod>
+
+  <SqlMethod name="deleteTransactional" connection="true" type="preparedStatement" return="rowCount">
+    <Sql><![CDATA[
+        DELETE FROM zsfi_budgetperiod
+        WHERE zsfi_budgetperiod.Zsfi_Budgetperiod_ID = ? 
+                 AND zsfi_budgetperiod.Zsfi_Budget_ID = ? 
+    ]]></Sql>
+    <Parameter name="param1"></Parameter>
+        <Parameter name="zsfiBudgetId" id="paramKeyParent"></Parameter>
+  </SqlMethod>
+  
+  <SqlMethod name="selectOrg" type="preparedStatement" return="string">
+    <SqlMethodComment>Select for relation</SqlMethodComment>
+    <Sql><![CDATA[ 
+        SELECT AD_ORG_ID
+          FROM zsfi_budgetperiod
+         WHERE zsfi_budgetperiod.Zsfi_Budgetperiod_ID = ? 
+    ]]></Sql>
+    <Parameter name="id"></Parameter>
+  </SqlMethod>
+  
+  <SqlMethod name="getCurrentDBTimestamp" type="preparedStatement" return="string">
+    <Sql><![CDATA[ 
+        SELECT to_char(Updated, 'YYYYMMDDHH24MISS') as Updated_Time_Stamp
+          FROM zsfi_budgetperiod
+         WHERE zsfi_budgetperiod.Zsfi_Budgetperiod_ID = ? 
+    ]]></Sql>
+    <Parameter name="id"></Parameter>
+  </SqlMethod>
+</SqlClass>

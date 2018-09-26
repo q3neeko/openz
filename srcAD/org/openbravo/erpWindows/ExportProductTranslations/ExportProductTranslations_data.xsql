@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SqlClass id="class" name="ExportProductTranslationsData" package="org.openbravo.erpWindows.ExportProductTranslations">
+  <SqlClassComment>WAD Generated class</SqlClassComment>
+
+  <SqlMethod name="selectEdit" type="preparedStatement" return="multiple">
+    <SqlMethodComment>Select for edit</SqlMethodComment>
+    <Sql><![CDATA[
+        SELECT to_char(i_product_trl_v.Created, ?) as created, 
+        (SELECT NAME FROM AD_USER u WHERE AD_USER_ID = i_product_trl_v.CreatedBy) as CreatedByR, 
+        to_char(i_product_trl_v.Updated, ?) as updated, 
+        to_char(i_product_trl_v.Updated, 'YYYYMMDDHH24MISS') as Updated_Time_Stamp,  
+        i_product_trl_v.UpdatedBy, 
+        (SELECT NAME FROM AD_USER u WHERE AD_USER_ID = i_product_trl_v.UpdatedBy) as UpdatedByR,
+        i_product_trl_v.Value, 
+i_product_trl_v.Name, 
+i_product_trl_v.Description, 
+i_product_trl_v.Documentnote, 
+i_product_trl_v.AD_Language, 
+i_product_trl_v.AD_Org_ID, 
+i_product_trl_v.M_Product_ID, 
+i_product_trl_v.AD_Client_ID, 
+i_product_trl_v.I_Product_Trl_V_ID, 
+COALESCE(i_product_trl_v.Isactive, 'N') AS Isactive, 
+ 
+        ? AS LANGUAGE 
+        FROM i_product_trl_v
+        WHERE 2=2 
+
+        AND 1=1 
+        AND i_product_trl_v.I_Product_Trl_V_ID = ? 
+        AND i_product_trl_v.AD_Client_ID IN ('1') 
+           AND i_product_trl_v.AD_Org_ID IN ('1') 
+    ]]></Sql>
+    <Parameter name="dateTimeFormat"></Parameter>
+    <Parameter name="dateTimeFormat"></Parameter>
+    
+    <Parameter name="paramLanguage"></Parameter>
+
+
+    <Parameter name="key"></Parameter>
+        <Parameter name="adUserClient" type="replace" optional="true" after="i_product_trl_v.AD_Client_ID IN (" text="'1'"/>
+        <Parameter name="adOrgClient" type="replace" optional="true" after="i_product_trl_v.AD_Org_ID IN (" text="'1'"/>
+
+    <Field name="adUserClient" value="void"></Field>
+    <Field name="adOrgClient" value="void"></Field>
+    <Field name="createdby" value="void"></Field>
+    
+    <Field name="trBgcolor" value="void"></Field>
+    <Field name="totalCount" value="void"></Field>
+    <Field name="dateTimeFormat" value=""></Field>
+  </SqlMethod>
+  
+  
+
+  <SqlMethod name="set" type="constant" return="multiple">
+      <SqlMethodComment>Create a registry</SqlMethodComment>
+      <Sql></Sql>
+
+<Parameter name="adOrgId"></Parameter><Parameter name="adLanguage"></Parameter><Parameter name="iProductTrlVId"></Parameter><Parameter name="documentnote"></Parameter><Parameter name="updatedby"></Parameter><Parameter name="updatedbyr"></Parameter><Parameter name="name"></Parameter><Parameter name="mProductId"></Parameter><Parameter name="description"></Parameter><Parameter name="adClientId"></Parameter><Parameter name="isactive"></Parameter><Parameter name="createdby"></Parameter><Parameter name="createdbyr"></Parameter><Parameter name="value"></Parameter>
+   </SqlMethod>
+
+
+
+
+
+
+   <SqlMethod name="selectDefA3C0B95EAF194CA2A714E1450232FA3A_0" type="preparedStatement" return="String" default="">
+    <SqlMethodComment>Select for auxiliar field</SqlMethodComment>
+    <Sql><![CDATA[
+        SELECT  ( COALESCE(TO_CHAR(table1.Name), '') ) as Updatedby FROM AD_User table1 WHERE table1.isActive='Y' AND table1.AD_User_ID = ?  
+    ]]></Sql>
+<Parameter name="UpdatedbyR"/>
+  </SqlMethod>
+
+   <SqlMethod name="selectDefD453E7695D6C47ACB22B1BB500F24193_1" type="preparedStatement" return="String" default="">
+    <SqlMethodComment>Select for auxiliar field</SqlMethodComment>
+    <Sql><![CDATA[
+        SELECT  ( COALESCE(TO_CHAR(table1.Name), '') ) as Createdby FROM AD_User table1 WHERE table1.isActive='Y' AND table1.AD_User_ID = ?  
+    ]]></Sql>
+<Parameter name="CreatedbyR"/>
+  </SqlMethod>
+
+
+
+
+
+
+
+
+
+
+  <SqlMethod name="update" type="preparedStatement" return="rowCount" static="false" connection="true">
+    <Sql><![CDATA[
+        UPDATE i_product_trl_v
+        SET Value = (?) , Name = (?) , Description = (?) , Documentnote = (?) , AD_Language = (?) , AD_Org_ID = (?) , M_Product_ID = (?) , AD_Client_ID = (?) , I_Product_Trl_V_ID = (?) , Isactive = (?) , updated = now(), updatedby = ? 
+        WHERE i_product_trl_v.I_Product_Trl_V_ID = ? 
+        
+        AND i_product_trl_v.AD_Client_ID IN ('1') 
+        AND i_product_trl_v.AD_Org_ID IN ('1') 
+    ]]></Sql>
+    <Parameter name="value"></Parameter> <Parameter name="name"></Parameter> <Parameter name="description"></Parameter> <Parameter name="documentnote"></Parameter> <Parameter name="adLanguage"></Parameter> <Parameter name="adOrgId"></Parameter> <Parameter name="mProductId"></Parameter> <Parameter name="adClientId"></Parameter> <Parameter name="iProductTrlVId"></Parameter> <Parameter name="isactive"></Parameter> 
+    <Parameter name="updatedby"></Parameter>
+    <Parameter id="paramKey" name="iProductTrlVId"></Parameter>
+    
+    
+        <Parameter name="adUserClient" type="replace" optional="true" after="i_product_trl_v.AD_Client_ID IN (" text="'1'"/>
+        <Parameter name="adOrgClient" type="replace" optional="true" after="i_product_trl_v.AD_Org_ID IN (" text="'1'"/>
+  </SqlMethod>
+
+  <SqlMethod name="insert" type="preparedStatement" return="rowCount" static="false" connection="true">
+    <Sql><![CDATA[
+        INSERT INTO i_product_trl_v 
+        (Value, Name, Description, Documentnote, AD_Language, AD_Org_ID, M_Product_ID, AD_Client_ID, I_Product_Trl_V_ID, Isactive, created, createdby, updated, updatedBy)
+        VALUES ((?), (?), (?), (?), (?), (?), (?), (?), (?), (?), now(), ?, now(), ?)
+    ]]></Sql>
+    <Parameter name="value"></Parameter> <Parameter name="name"></Parameter> <Parameter name="description"></Parameter> <Parameter name="documentnote"></Parameter> <Parameter name="adLanguage"></Parameter> <Parameter name="adOrgId"></Parameter> <Parameter name="mProductId"></Parameter> <Parameter name="adClientId"></Parameter> <Parameter name="iProductTrlVId"></Parameter> <Parameter name="isactive"></Parameter> 
+    <Parameter name="createdby"></Parameter>
+    <Parameter name="updatedby"></Parameter>
+  </SqlMethod>
+
+  <SqlMethod name="delete" type="preparedStatement" return="rowCount">
+    <Sql><![CDATA[
+        DELETE FROM i_product_trl_v
+        WHERE i_product_trl_v.I_Product_Trl_V_ID = ? 
+        
+        AND i_product_trl_v.AD_Client_ID IN ('1') 
+        AND i_product_trl_v.AD_Org_ID IN ('1') 
+    ]]></Sql>
+    <Parameter name="param1"></Parameter>
+    
+        <Parameter name="adUserClient" type="replace" optional="true" after="i_product_trl_v.AD_Client_ID IN (" text="'1'"/>
+        <Parameter name="adOrgClient" type="replace" optional="true" after="i_product_trl_v.AD_Org_ID IN (" text="'1'"/>
+  </SqlMethod>
+
+  <SqlMethod name="deleteTransactional" connection="true" type="preparedStatement" return="rowCount">
+    <Sql><![CDATA[
+        DELETE FROM i_product_trl_v
+        WHERE i_product_trl_v.I_Product_Trl_V_ID = ? 
+        
+    ]]></Sql>
+    <Parameter name="param1"></Parameter>
+    
+  </SqlMethod>
+  
+  <SqlMethod name="selectOrg" type="preparedStatement" return="string">
+    <SqlMethodComment>Select for relation</SqlMethodComment>
+    <Sql><![CDATA[ 
+        SELECT AD_ORG_ID
+          FROM i_product_trl_v
+         WHERE i_product_trl_v.I_Product_Trl_V_ID = ? 
+    ]]></Sql>
+    <Parameter name="id"></Parameter>
+  </SqlMethod>
+  
+  <SqlMethod name="getCurrentDBTimestamp" type="preparedStatement" return="string">
+    <Sql><![CDATA[ 
+        SELECT to_char(Updated, 'YYYYMMDDHH24MISS') as Updated_Time_Stamp
+          FROM i_product_trl_v
+         WHERE i_product_trl_v.I_Product_Trl_V_ID = ? 
+    ]]></Sql>
+    <Parameter name="id"></Parameter>
+  </SqlMethod>
+</SqlClass>

@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SqlClass id="class" name="PrintConfigurationData" package="org.openbravo.erpWindows.PrintConfiguration">
+  <SqlClassComment>WAD Generated class</SqlClassComment>
+
+  <SqlMethod name="selectEdit" type="preparedStatement" return="multiple">
+    <SqlMethodComment>Select for edit</SqlMethodComment>
+    <Sql><![CDATA[
+        SELECT to_char(c_printout_config.Created, ?) as created, 
+        (SELECT NAME FROM AD_USER u WHERE AD_USER_ID = c_printout_config.CreatedBy) as CreatedByR, 
+        to_char(c_printout_config.Updated, ?) as updated, 
+        to_char(c_printout_config.Updated, 'YYYYMMDDHH24MISS') as Updated_Time_Stamp,  
+        c_printout_config.UpdatedBy, 
+        (SELECT NAME FROM AD_USER u WHERE AD_USER_ID = c_printout_config.UpdatedBy) as UpdatedByR,
+        c_printout_config.C_Printout_Config_ID, 
+c_printout_config.AD_Org_ID, 
+(CASE WHEN c_printout_config.AD_Org_ID IS NULL THEN '' ELSE  (COALESCE(TO_CHAR(TO_CHAR(COALESCE(TO_CHAR(table1.Name), ''))),'') ) END) AS AD_Org_IDR, 
+COALESCE(c_printout_config.Isactive, 'N') AS Isactive, 
+c_printout_config.Variant, 
+COALESCE(c_printout_config.Isdefault, 'N') AS Isdefault, 
+c_printout_config.AD_Image_ID, 
+(CASE WHEN c_printout_config.AD_Image_ID IS NULL THEN '' ELSE  (COALESCE(TO_CHAR(TO_CHAR(COALESCE(TO_CHAR(table2.Name), ''))),'') ) END) AS AD_Image_IDR, 
+c_printout_config.Varying_Bp, 
+COALESCE(c_printout_config.Varying_Bp_Isprint, 'N') AS Varying_Bp_Isprint, 
+c_printout_config.Name, 
+COALESCE(c_printout_config.Name_Isprint, 'N') AS Name_Isprint, 
+c_printout_config.Contact, 
+COALESCE(c_printout_config.Contact_Isprint, 'N') AS Contact_Isprint, 
+c_printout_config.Address1, 
+COALESCE(c_printout_config.Address1_Isprint, 'N') AS Address1_Isprint, 
+c_printout_config.Address2, 
+COALESCE(c_printout_config.Address2_Isprint, 'N') AS Address2_Isprint, 
+c_printout_config.Plz, 
+COALESCE(c_printout_config.PLZ_Isprint, 'N') AS PLZ_Isprint, 
+c_printout_config.City, 
+COALESCE(c_printout_config.City_Isprint, 'N') AS City_Isprint, 
+c_printout_config.Land, 
+COALESCE(c_printout_config.Land_Isprint, 'N') AS Land_Isprint, 
+c_printout_config.Addressheader, 
+COALESCE(c_printout_config.Addressheader_Isprint, 'N') AS Addressheader_Isprint, 
+c_printout_config.Onelineadr, 
+COALESCE(c_printout_config.Onelineadr_Isprint, 'N') AS Onelineadr_Isprint, 
+c_printout_config.Address1_Org, 
+COALESCE(c_printout_config.Address1_Org_Isprint, 'N') AS Address1_Org_Isprint, 
+c_printout_config.Address2_Org, 
+COALESCE(c_printout_config.Address2_Org_Isprint, 'N') AS Address2_Org_Isprint, 
+c_printout_config.Address3_Org, 
+COALESCE(c_printout_config.Address3_Org_Isprint, 'N') AS Address3_Org_Isprint, 
+c_printout_config.Address4_Org, 
+COALESCE(c_printout_config.Address4_Org_Isprint, 'N') AS Address4_Org_Isprint, 
+c_printout_config.Address5_Org, 
+COALESCE(c_printout_config.Address5_Org_Isprint, 'N') AS Address5_Org_Isprint, 
+c_printout_config.Address6_Org, 
+COALESCE(c_printout_config.Address6_Org_Isprint, 'N') AS Address6_Org_Isprint, 
+c_printout_config.Address7_Org, 
+COALESCE(c_printout_config.Address7_Org_Isprint, 'N') AS Address7_Org_Isprint, 
+c_printout_config.Address8_Org, 
+COALESCE(c_printout_config.Address8_Org_Isprint, 'N') AS Address8_Org_Isprint, 
+c_printout_config.Address9_Org, 
+COALESCE(c_printout_config.Address9_Org_Isprint, 'N') AS Address9_Org_Isprint, 
+COALESCE(c_printout_config.Shiporder_Isprint, 'N') AS Shiporder_Isprint, 
+COALESCE(c_printout_config.Standardorjuwi_Isprint, 'N') AS Standardorjuwi_Isprint, 
+COALESCE(c_printout_config.Juwiorjuwiang_Isprint, 'N') AS Juwiorjuwiang_Isprint, 
+COALESCE(c_printout_config.Onetimejuwioronetimejuwiang_Isprint, 'N') AS Onetimejuwioronetimejuwiang_Isprint, 
+c_printout_config.Barcode39_Order, 
+(CASE WHEN c_printout_config.Barcode39_Order IS NULL THEN '' ELSE  ( COALESCE(TO_CHAR(list1.name),'') ) END) AS Barcode39_OrderR, 
+c_printout_config.Orderdate_Descr, 
+c_printout_config.Orderdate_Ref, 
+c_printout_config.Element1_Orderref, 
+c_printout_config.Element2_Orderref, 
+c_printout_config.Element3_Orderref, 
+c_printout_config.Element4_Orderref, 
+c_printout_config.Element5_Orderref, 
+c_printout_config.Element6_Orderref, 
+c_printout_config.Element7_Orderref, 
+c_printout_config.Element8_Orderref, 
+c_printout_config.Element9_Orderref, 
+c_printout_config.Element10_Orderref, 
+c_printout_config.Element11_Orderref, 
+c_printout_config.Element12_Orderref, 
+c_printout_config.Element13_Orderref, 
+c_printout_config.Element14_Orderref, 
+c_printout_config.Element15_Orderref, 
+c_printout_config.Barcode39_Invoice, 
+(CASE WHEN c_printout_config.Barcode39_Invoice IS NULL THEN '' ELSE  ( COALESCE(TO_CHAR(list2.name),'') ) END) AS Barcode39_InvoiceR, 
+c_printout_config.Invoicedate_Descr, 
+c_printout_config.Invoicedate_Ref, 
+c_printout_config.Element1_Invoiceref, 
+c_printout_config.Element2_Invoiceref, 
+c_printout_config.Element3_Invoiceref, 
+c_printout_config.Element4_Invoiceref, 
+c_printout_config.Element5_Invoiceref, 
+c_printout_config.Element6_Invoiceref, 
+c_printout_config.Element7_Invoiceref, 
+c_printout_config.Element8_Invoiceref, 
+c_printout_config.Element9_Invoiceref, 
+c_printout_config.Element10_Invoiceref, 
+c_printout_config.Element11_Invoiceref, 
+c_printout_config.Element12_Invoiceref, 
+c_printout_config.Element13_Invoiceref, 
+c_printout_config.Element14_Invoiceref, 
+c_printout_config.Element15_Invoiceref, 
+c_printout_config.Barcode39_Inout, 
+(CASE WHEN c_printout_config.Barcode39_Inout IS NULL THEN '' ELSE  ( COALESCE(TO_CHAR(list3.name),'') ) END) AS Barcode39_InoutR, 
+c_printout_config.Shipmentdate_Descr, 
+c_printout_config.Shipmentdate_Ref, 
+c_printout_config.Element1_Shipmentref, 
+c_printout_config.Element2_Shipmentref, 
+c_printout_config.Element3_Shipmentref, 
+c_printout_config.Element4_Shipmentref, 
+c_printout_config.Element5_Shipmentref, 
+c_printout_config.Element6_Shipmentref, 
+c_printout_config.Element7_Shipmentref, 
+c_printout_config.Element8_Shipmentref, 
+c_printout_config.Element9_Shipmentref, 
+c_printout_config.Element10_Shipmentref, 
+c_printout_config.Element11_Shipmentref, 
+c_printout_config.Element12_Shipmentref, 
+c_printout_config.Element13_Shipmentref, 
+c_printout_config.Element14_Shipmentref, 
+c_printout_config.Element15_Shipmentref, 
+c_printout_config.Footer_Img, 
+c_printout_config.AD_Client_ID, 
+COALESCE(c_printout_config.Proforma_Isprint, 'N') AS Proforma_Isprint, 
+ 
+        ? AS LANGUAGE 
+        FROM c_printout_config left join (select AD_Org_ID, Name from AD_Org) table1 on (c_printout_config.AD_Org_ID = table1.AD_Org_ID) left join (select AD_Image_ID, Name from AD_Image) table2 on (c_printout_config.AD_Image_ID = table2.AD_Image_ID) left join ad_ref_list_v list1 on (c_printout_config.Barcode39_Order = list1.value and list1.ad_reference_id = 'EA1748B8AE9F40D6A6E9F15F946B83BA' and list1.ad_language = ?)  left join ad_ref_list_v list2 on (c_printout_config.Barcode39_Invoice = list2.value and list2.ad_reference_id = '0C76B0046B9948A8AD7D8B23A42C1805' and list2.ad_language = ?)  left join ad_ref_list_v list3 on (c_printout_config.Barcode39_Inout = list3.value and list3.ad_reference_id = '2D9896B888B149BF9EEF67F3BBAF2884' and list3.ad_language = ?) 
+        WHERE 2=2 
+
+        AND 1=1 
+        AND c_printout_config.C_Printout_Config_ID = ? 
+        AND c_printout_config.AD_Client_ID IN ('1') 
+           AND c_printout_config.AD_Org_ID IN ('1') 
+    ]]></Sql>
+    <Parameter name="dateTimeFormat"></Parameter>
+    <Parameter name="dateTimeFormat"></Parameter>
+    
+    <Parameter name="paramLanguage"></Parameter>
+<Parameter name="paramLanguage"/>
+<Parameter name="paramLanguage"/>
+<Parameter name="paramLanguage"/>
+
+
+    <Parameter name="key"></Parameter>
+        <Parameter name="adUserClient" type="replace" optional="true" after="c_printout_config.AD_Client_ID IN (" text="'1'"/>
+        <Parameter name="adOrgClient" type="replace" optional="true" after="c_printout_config.AD_Org_ID IN (" text="'1'"/>
+
+    <Field name="adUserClient" value="void"></Field>
+    <Field name="adOrgClient" value="void"></Field>
+    <Field name="createdby" value="void"></Field>
+    
+    <Field name="trBgcolor" value="void"></Field>
+    <Field name="totalCount" value="void"></Field>
+    <Field name="dateTimeFormat" value=""></Field>
+  </SqlMethod>
+  
+  
+
+  <SqlMethod name="set" type="constant" return="multiple">
+      <SqlMethodComment>Create a registry</SqlMethodComment>
+      <Sql></Sql>
+
+<Parameter name="element10Invoiceref"></Parameter><Parameter name="orderdateDescr"></Parameter><Parameter name="element1Shipmentref"></Parameter><Parameter name="barcode39Invoice"></Parameter><Parameter name="address1Isprint"></Parameter><Parameter name="plzIsprint"></Parameter><Parameter name="element4Orderref"></Parameter><Parameter name="onelineadr"></Parameter><Parameter name="contact"></Parameter><Parameter name="element5Orderref"></Parameter><Parameter name="addressheaderIsprint"></Parameter><Parameter name="variant"></Parameter><Parameter name="address4OrgIsprint"></Parameter><Parameter name="address5Org"></Parameter><Parameter name="element5Invoiceref"></Parameter><Parameter name="standardorjuwiIsprint"></Parameter><Parameter name="element4Shipmentref"></Parameter><Parameter name="cityIsprint"></Parameter><Parameter name="element2Invoiceref"></Parameter><Parameter name="shipmentdateRef"></Parameter><Parameter name="barcode39Inout"></Parameter><Parameter name="invoicedateDescr"></Parameter><Parameter name="shiporderIsprint"></Parameter><Parameter name="address5OrgIsprint"></Parameter><Parameter name="onetimejuwioronetimejuwiangIsprint"></Parameter><Parameter name="address9OrgIsprint"></Parameter><Parameter name="invoicedateRef"></Parameter><Parameter name="address8Org"></Parameter><Parameter name="land"></Parameter><Parameter name="element9Invoiceref"></Parameter><Parameter name="address2"></Parameter><Parameter name="cPrintoutConfigId"></Parameter><Parameter name="element8Invoiceref"></Parameter><Parameter name="element8Shipmentref"></Parameter><Parameter name="address7Org"></Parameter><Parameter name="juwiorjuwiangIsprint"></Parameter><Parameter name="orderdateRef"></Parameter><Parameter name="adImageId"></Parameter><Parameter name="isdefault"></Parameter><Parameter name="element14Invoiceref"></Parameter><Parameter name="updatedby"></Parameter><Parameter name="updatedbyr"></Parameter><Parameter name="element12Invoiceref"></Parameter><Parameter name="address2Org"></Parameter><Parameter name="element13Invoiceref"></Parameter><Parameter name="element15Invoiceref"></Parameter><Parameter name="element2Shipmentref"></Parameter><Parameter name="element3Orderref"></Parameter><Parameter name="element13Shipmentref"></Parameter><Parameter name="address7OrgIsprint"></Parameter><Parameter name="element1Invoiceref"></Parameter><Parameter name="proformaIsprint"></Parameter><Parameter name="element4Invoiceref"></Parameter><Parameter name="landIsprint"></Parameter><Parameter name="onelineadrIsprint"></Parameter><Parameter name="element7Shipmentref"></Parameter><Parameter name="address2Isprint"></Parameter><Parameter name="element10Orderref"></Parameter><Parameter name="varyingBp"></Parameter><Parameter name="element15Orderref"></Parameter><Parameter name="element8Orderref"></Parameter><Parameter name="address2OrgIsprint"></Parameter><Parameter name="city"></Parameter><Parameter name="element6Orderref"></Parameter><Parameter name="createdby"></Parameter><Parameter name="createdbyr"></Parameter><Parameter name="element13Orderref"></Parameter><Parameter name="address4Org"></Parameter><Parameter name="element6Shipmentref"></Parameter><Parameter name="name"></Parameter><Parameter name="element11Invoiceref"></Parameter><Parameter name="adClientId"></Parameter><Parameter name="element14Orderref"></Parameter><Parameter name="element7Invoiceref"></Parameter><Parameter name="contactIsprint"></Parameter><Parameter name="address9Org"></Parameter><Parameter name="element3Shipmentref"></Parameter><Parameter name="element5Shipmentref"></Parameter><Parameter name="element6Invoiceref"></Parameter><Parameter name="element15Shipmentref"></Parameter><Parameter name="nameIsprint"></Parameter><Parameter name="element11Shipmentref"></Parameter><Parameter name="address1OrgIsprint"></Parameter><Parameter name="element11Orderref"></Parameter><Parameter name="footerImg"></Parameter><Parameter name="element7Orderref"></Parameter><Parameter name="addressheader"></Parameter><Parameter name="plz"></Parameter><Parameter name="address3OrgIsprint"></Parameter><Parameter name="address1Org"></Parameter><Parameter name="address8OrgIsprint"></Parameter><Parameter name="varyingBpIsprint"></Parameter><Parameter name="element12Shipmentref"></Parameter><Parameter name="element14Shipmentref"></Parameter><Parameter name="isactive"></Parameter><Parameter name="address3Org"></Parameter><Parameter name="element3Invoiceref"></Parameter><Parameter name="element10Shipmentref"></Parameter><Parameter name="element12Orderref"></Parameter><Parameter name="element9Shipmentref"></Parameter><Parameter name="barcode39Order"></Parameter><Parameter name="shipmentdateDescr"></Parameter><Parameter name="element1Orderref"></Parameter><Parameter name="element9Orderref"></Parameter><Parameter name="address6Org"></Parameter><Parameter name="address6OrgIsprint"></Parameter><Parameter name="address1"></Parameter><Parameter name="adOrgId"></Parameter><Parameter name="element2Orderref"></Parameter>
+   </SqlMethod>
+
+
+
+
+
+
+   <SqlMethod name="selectDef6E593D0152BA490A854D48821FE42D09_0" type="preparedStatement" return="String" default="">
+    <SqlMethodComment>Select for auxiliar field</SqlMethodComment>
+    <Sql><![CDATA[
+        SELECT  ( COALESCE(TO_CHAR(table1.Name), '') ) as Updatedby FROM AD_User table1 WHERE table1.isActive='Y' AND table1.AD_User_ID = ?  
+    ]]></Sql>
+<Parameter name="UpdatedbyR"/>
+  </SqlMethod>
+
+   <SqlMethod name="selectDefBD8346C20E3C45B5B5DC931B3F21DF00_1" type="preparedStatement" return="String" default="">
+    <SqlMethodComment>Select for auxiliar field</SqlMethodComment>
+    <Sql><![CDATA[
+        SELECT  ( COALESCE(TO_CHAR(table1.Name), '') ) as Createdby FROM AD_User table1 WHERE table1.isActive='Y' AND table1.AD_User_ID = ?  
+    ]]></Sql>
+<Parameter name="CreatedbyR"/>
+  </SqlMethod>
+
+
+
+
+
+
+
+
+
+
+  <SqlMethod name="update" type="preparedStatement" return="rowCount" static="false" connection="true">
+    <Sql><![CDATA[
+        UPDATE c_printout_config
+        SET C_Printout_Config_ID = (?) , AD_Org_ID = (?) , Isactive = (?) , Variant = (?) , Isdefault = (?) , AD_Image_ID = (?) , Varying_Bp = (?) , Varying_Bp_Isprint = (?) , Name = (?) , Name_Isprint = (?) , Contact = (?) , Contact_Isprint = (?) , Address1 = (?) , Address1_Isprint = (?) , Address2 = (?) , Address2_Isprint = (?) , Plz = (?) , PLZ_Isprint = (?) , City = (?) , City_Isprint = (?) , Land = (?) , Land_Isprint = (?) , Addressheader = (?) , Addressheader_Isprint = (?) , Onelineadr = (?) , Onelineadr_Isprint = (?) , Address1_Org = (?) , Address1_Org_Isprint = (?) , Address2_Org = (?) , Address2_Org_Isprint = (?) , Address3_Org = (?) , Address3_Org_Isprint = (?) , Address4_Org = (?) , Address4_Org_Isprint = (?) , Address5_Org = (?) , Address5_Org_Isprint = (?) , Address6_Org = (?) , Address6_Org_Isprint = (?) , Address7_Org = (?) , Address7_Org_Isprint = (?) , Address8_Org = (?) , Address8_Org_Isprint = (?) , Address9_Org = (?) , Address9_Org_Isprint = (?) , Shiporder_Isprint = (?) , Standardorjuwi_Isprint = (?) , Juwiorjuwiang_Isprint = (?) , Onetimejuwioronetimejuwiang_Isprint = (?) , Barcode39_Order = (?) , Orderdate_Descr = (?) , Orderdate_Ref = (?) , Element1_Orderref = (?) , Element2_Orderref = (?) , Element3_Orderref = (?) , Element4_Orderref = (?) , Element5_Orderref = (?) , Element6_Orderref = (?) , Element7_Orderref = (?) , Element8_Orderref = (?) , Element9_Orderref = (?) , Element10_Orderref = (?) , Element11_Orderref = (?) , Element12_Orderref = (?) , Element13_Orderref = (?) , Element14_Orderref = (?) , Element15_Orderref = (?) , Barcode39_Invoice = (?) , Invoicedate_Descr = (?) , Invoicedate_Ref = (?) , Element1_Invoiceref = (?) , Element2_Invoiceref = (?) , Element3_Invoiceref = (?) , Element4_Invoiceref = (?) , Element5_Invoiceref = (?) , Element6_Invoiceref = (?) , Element7_Invoiceref = (?) , Element8_Invoiceref = (?) , Element9_Invoiceref = (?) , Element10_Invoiceref = (?) , Element11_Invoiceref = (?) , Element12_Invoiceref = (?) , Element13_Invoiceref = (?) , Element14_Invoiceref = (?) , Element15_Invoiceref = (?) , Barcode39_Inout = (?) , Shipmentdate_Descr = (?) , Shipmentdate_Ref = (?) , Element1_Shipmentref = (?) , Element2_Shipmentref = (?) , Element3_Shipmentref = (?) , Element4_Shipmentref = (?) , Element5_Shipmentref = (?) , Element6_Shipmentref = (?) , Element7_Shipmentref = (?) , Element8_Shipmentref = (?) , Element9_Shipmentref = (?) , Element10_Shipmentref = (?) , Element11_Shipmentref = (?) , Element12_Shipmentref = (?) , Element13_Shipmentref = (?) , Element14_Shipmentref = (?) , Element15_Shipmentref = (?) , Footer_Img = (?) , AD_Client_ID = (?) , Proforma_Isprint = (?) , updated = now(), updatedby = ? 
+        WHERE c_printout_config.C_Printout_Config_ID = ? 
+        
+        AND c_printout_config.AD_Client_ID IN ('1') 
+        AND c_printout_config.AD_Org_ID IN ('1') 
+    ]]></Sql>
+    <Parameter name="cPrintoutConfigId"></Parameter> <Parameter name="adOrgId"></Parameter> <Parameter name="isactive"></Parameter> <Parameter name="variant"></Parameter> <Parameter name="isdefault"></Parameter> <Parameter name="adImageId"></Parameter> <Parameter name="varyingBp"></Parameter> <Parameter name="varyingBpIsprint"></Parameter> <Parameter name="name"></Parameter> <Parameter name="nameIsprint"></Parameter> <Parameter name="contact"></Parameter> <Parameter name="contactIsprint"></Parameter> <Parameter name="address1"></Parameter> <Parameter name="address1Isprint"></Parameter> <Parameter name="address2"></Parameter> <Parameter name="address2Isprint"></Parameter> <Parameter name="plz"></Parameter> <Parameter name="plzIsprint"></Parameter> <Parameter name="city"></Parameter> <Parameter name="cityIsprint"></Parameter> <Parameter name="land"></Parameter> <Parameter name="landIsprint"></Parameter> <Parameter name="addressheader"></Parameter> <Parameter name="addressheaderIsprint"></Parameter> <Parameter name="onelineadr"></Parameter> <Parameter name="onelineadrIsprint"></Parameter> <Parameter name="address1Org"></Parameter> <Parameter name="address1OrgIsprint"></Parameter> <Parameter name="address2Org"></Parameter> <Parameter name="address2OrgIsprint"></Parameter> <Parameter name="address3Org"></Parameter> <Parameter name="address3OrgIsprint"></Parameter> <Parameter name="address4Org"></Parameter> <Parameter name="address4OrgIsprint"></Parameter> <Parameter name="address5Org"></Parameter> <Parameter name="address5OrgIsprint"></Parameter> <Parameter name="address6Org"></Parameter> <Parameter name="address6OrgIsprint"></Parameter> <Parameter name="address7Org"></Parameter> <Parameter name="address7OrgIsprint"></Parameter> <Parameter name="address8Org"></Parameter> <Parameter name="address8OrgIsprint"></Parameter> <Parameter name="address9Org"></Parameter> <Parameter name="address9OrgIsprint"></Parameter> <Parameter name="shiporderIsprint"></Parameter> <Parameter name="standardorjuwiIsprint"></Parameter> <Parameter name="juwiorjuwiangIsprint"></Parameter> <Parameter name="onetimejuwioronetimejuwiangIsprint"></Parameter> <Parameter name="barcode39Order"></Parameter> <Parameter name="orderdateDescr"></Parameter> <Parameter name="orderdateRef"></Parameter> <Parameter name="element1Orderref"></Parameter> <Parameter name="element2Orderref"></Parameter> <Parameter name="element3Orderref"></Parameter> <Parameter name="element4Orderref"></Parameter> <Parameter name="element5Orderref"></Parameter> <Parameter name="element6Orderref"></Parameter> <Parameter name="element7Orderref"></Parameter> <Parameter name="element8Orderref"></Parameter> <Parameter name="element9Orderref"></Parameter> <Parameter name="element10Orderref"></Parameter> <Parameter name="element11Orderref"></Parameter> <Parameter name="element12Orderref"></Parameter> <Parameter name="element13Orderref"></Parameter> <Parameter name="element14Orderref"></Parameter> <Parameter name="element15Orderref"></Parameter> <Parameter name="barcode39Invoice"></Parameter> <Parameter name="invoicedateDescr"></Parameter> <Parameter name="invoicedateRef"></Parameter> <Parameter name="element1Invoiceref"></Parameter> <Parameter name="element2Invoiceref"></Parameter> <Parameter name="element3Invoiceref"></Parameter> <Parameter name="element4Invoiceref"></Parameter> <Parameter name="element5Invoiceref"></Parameter> <Parameter name="element6Invoiceref"></Parameter> <Parameter name="element7Invoiceref"></Parameter> <Parameter name="element8Invoiceref"></Parameter> <Parameter name="element9Invoiceref"></Parameter> <Parameter name="element10Invoiceref"></Parameter> <Parameter name="element11Invoiceref"></Parameter> <Parameter name="element12Invoiceref"></Parameter> <Parameter name="element13Invoiceref"></Parameter> <Parameter name="element14Invoiceref"></Parameter> <Parameter name="element15Invoiceref"></Parameter> <Parameter name="barcode39Inout"></Parameter> <Parameter name="shipmentdateDescr"></Parameter> <Parameter name="shipmentdateRef"></Parameter> <Parameter name="element1Shipmentref"></Parameter> <Parameter name="element2Shipmentref"></Parameter> <Parameter name="element3Shipmentref"></Parameter> <Parameter name="element4Shipmentref"></Parameter> <Parameter name="element5Shipmentref"></Parameter> <Parameter name="element6Shipmentref"></Parameter> <Parameter name="element7Shipmentref"></Parameter> <Parameter name="element8Shipmentref"></Parameter> <Parameter name="element9Shipmentref"></Parameter> <Parameter name="element10Shipmentref"></Parameter> <Parameter name="element11Shipmentref"></Parameter> <Parameter name="element12Shipmentref"></Parameter> <Parameter name="element13Shipmentref"></Parameter> <Parameter name="element14Shipmentref"></Parameter> <Parameter name="element15Shipmentref"></Parameter> <Parameter name="footerImg"></Parameter> <Parameter name="adClientId"></Parameter> <Parameter name="proformaIsprint"></Parameter> 
+    <Parameter name="updatedby"></Parameter>
+    <Parameter id="paramKey" name="cPrintoutConfigId"></Parameter>
+    
+    
+        <Parameter name="adUserClient" type="replace" optional="true" after="c_printout_config.AD_Client_ID IN (" text="'1'"/>
+        <Parameter name="adOrgClient" type="replace" optional="true" after="c_printout_config.AD_Org_ID IN (" text="'1'"/>
+  </SqlMethod>
+
+  <SqlMethod name="insert" type="preparedStatement" return="rowCount" static="false" connection="true">
+    <Sql><![CDATA[
+        INSERT INTO c_printout_config 
+        (C_Printout_Config_ID, AD_Org_ID, Isactive, Variant, Isdefault, AD_Image_ID, Varying_Bp, Varying_Bp_Isprint, Name, Name_Isprint, Contact, Contact_Isprint, Address1, Address1_Isprint, Address2, Address2_Isprint, Plz, PLZ_Isprint, City, City_Isprint, Land, Land_Isprint, Addressheader, Addressheader_Isprint, Onelineadr, Onelineadr_Isprint, Address1_Org, Address1_Org_Isprint, Address2_Org, Address2_Org_Isprint, Address3_Org, Address3_Org_Isprint, Address4_Org, Address4_Org_Isprint, Address5_Org, Address5_Org_Isprint, Address6_Org, Address6_Org_Isprint, Address7_Org, Address7_Org_Isprint, Address8_Org, Address8_Org_Isprint, Address9_Org, Address9_Org_Isprint, Shiporder_Isprint, Standardorjuwi_Isprint, Juwiorjuwiang_Isprint, Onetimejuwioronetimejuwiang_Isprint, Barcode39_Order, Orderdate_Descr, Orderdate_Ref, Element1_Orderref, Element2_Orderref, Element3_Orderref, Element4_Orderref, Element5_Orderref, Element6_Orderref, Element7_Orderref, Element8_Orderref, Element9_Orderref, Element10_Orderref, Element11_Orderref, Element12_Orderref, Element13_Orderref, Element14_Orderref, Element15_Orderref, Barcode39_Invoice, Invoicedate_Descr, Invoicedate_Ref, Element1_Invoiceref, Element2_Invoiceref, Element3_Invoiceref, Element4_Invoiceref, Element5_Invoiceref, Element6_Invoiceref, Element7_Invoiceref, Element8_Invoiceref, Element9_Invoiceref, Element10_Invoiceref, Element11_Invoiceref, Element12_Invoiceref, Element13_Invoiceref, Element14_Invoiceref, Element15_Invoiceref, Barcode39_Inout, Shipmentdate_Descr, Shipmentdate_Ref, Element1_Shipmentref, Element2_Shipmentref, Element3_Shipmentref, Element4_Shipmentref, Element5_Shipmentref, Element6_Shipmentref, Element7_Shipmentref, Element8_Shipmentref, Element9_Shipmentref, Element10_Shipmentref, Element11_Shipmentref, Element12_Shipmentref, Element13_Shipmentref, Element14_Shipmentref, Element15_Shipmentref, Footer_Img, AD_Client_ID, Proforma_Isprint, created, createdby, updated, updatedBy)
+        VALUES ((?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), now(), ?, now(), ?)
+    ]]></Sql>
+    <Parameter name="cPrintoutConfigId"></Parameter> <Parameter name="adOrgId"></Parameter> <Parameter name="isactive"></Parameter> <Parameter name="variant"></Parameter> <Parameter name="isdefault"></Parameter> <Parameter name="adImageId"></Parameter> <Parameter name="varyingBp"></Parameter> <Parameter name="varyingBpIsprint"></Parameter> <Parameter name="name"></Parameter> <Parameter name="nameIsprint"></Parameter> <Parameter name="contact"></Parameter> <Parameter name="contactIsprint"></Parameter> <Parameter name="address1"></Parameter> <Parameter name="address1Isprint"></Parameter> <Parameter name="address2"></Parameter> <Parameter name="address2Isprint"></Parameter> <Parameter name="plz"></Parameter> <Parameter name="plzIsprint"></Parameter> <Parameter name="city"></Parameter> <Parameter name="cityIsprint"></Parameter> <Parameter name="land"></Parameter> <Parameter name="landIsprint"></Parameter> <Parameter name="addressheader"></Parameter> <Parameter name="addressheaderIsprint"></Parameter> <Parameter name="onelineadr"></Parameter> <Parameter name="onelineadrIsprint"></Parameter> <Parameter name="address1Org"></Parameter> <Parameter name="address1OrgIsprint"></Parameter> <Parameter name="address2Org"></Parameter> <Parameter name="address2OrgIsprint"></Parameter> <Parameter name="address3Org"></Parameter> <Parameter name="address3OrgIsprint"></Parameter> <Parameter name="address4Org"></Parameter> <Parameter name="address4OrgIsprint"></Parameter> <Parameter name="address5Org"></Parameter> <Parameter name="address5OrgIsprint"></Parameter> <Parameter name="address6Org"></Parameter> <Parameter name="address6OrgIsprint"></Parameter> <Parameter name="address7Org"></Parameter> <Parameter name="address7OrgIsprint"></Parameter> <Parameter name="address8Org"></Parameter> <Parameter name="address8OrgIsprint"></Parameter> <Parameter name="address9Org"></Parameter> <Parameter name="address9OrgIsprint"></Parameter> <Parameter name="shiporderIsprint"></Parameter> <Parameter name="standardorjuwiIsprint"></Parameter> <Parameter name="juwiorjuwiangIsprint"></Parameter> <Parameter name="onetimejuwioronetimejuwiangIsprint"></Parameter> <Parameter name="barcode39Order"></Parameter> <Parameter name="orderdateDescr"></Parameter> <Parameter name="orderdateRef"></Parameter> <Parameter name="element1Orderref"></Parameter> <Parameter name="element2Orderref"></Parameter> <Parameter name="element3Orderref"></Parameter> <Parameter name="element4Orderref"></Parameter> <Parameter name="element5Orderref"></Parameter> <Parameter name="element6Orderref"></Parameter> <Parameter name="element7Orderref"></Parameter> <Parameter name="element8Orderref"></Parameter> <Parameter name="element9Orderref"></Parameter> <Parameter name="element10Orderref"></Parameter> <Parameter name="element11Orderref"></Parameter> <Parameter name="element12Orderref"></Parameter> <Parameter name="element13Orderref"></Parameter> <Parameter name="element14Orderref"></Parameter> <Parameter name="element15Orderref"></Parameter> <Parameter name="barcode39Invoice"></Parameter> <Parameter name="invoicedateDescr"></Parameter> <Parameter name="invoicedateRef"></Parameter> <Parameter name="element1Invoiceref"></Parameter> <Parameter name="element2Invoiceref"></Parameter> <Parameter name="element3Invoiceref"></Parameter> <Parameter name="element4Invoiceref"></Parameter> <Parameter name="element5Invoiceref"></Parameter> <Parameter name="element6Invoiceref"></Parameter> <Parameter name="element7Invoiceref"></Parameter> <Parameter name="element8Invoiceref"></Parameter> <Parameter name="element9Invoiceref"></Parameter> <Parameter name="element10Invoiceref"></Parameter> <Parameter name="element11Invoiceref"></Parameter> <Parameter name="element12Invoiceref"></Parameter> <Parameter name="element13Invoiceref"></Parameter> <Parameter name="element14Invoiceref"></Parameter> <Parameter name="element15Invoiceref"></Parameter> <Parameter name="barcode39Inout"></Parameter> <Parameter name="shipmentdateDescr"></Parameter> <Parameter name="shipmentdateRef"></Parameter> <Parameter name="element1Shipmentref"></Parameter> <Parameter name="element2Shipmentref"></Parameter> <Parameter name="element3Shipmentref"></Parameter> <Parameter name="element4Shipmentref"></Parameter> <Parameter name="element5Shipmentref"></Parameter> <Parameter name="element6Shipmentref"></Parameter> <Parameter name="element7Shipmentref"></Parameter> <Parameter name="element8Shipmentref"></Parameter> <Parameter name="element9Shipmentref"></Parameter> <Parameter name="element10Shipmentref"></Parameter> <Parameter name="element11Shipmentref"></Parameter> <Parameter name="element12Shipmentref"></Parameter> <Parameter name="element13Shipmentref"></Parameter> <Parameter name="element14Shipmentref"></Parameter> <Parameter name="element15Shipmentref"></Parameter> <Parameter name="footerImg"></Parameter> <Parameter name="adClientId"></Parameter> <Parameter name="proformaIsprint"></Parameter> 
+    <Parameter name="createdby"></Parameter>
+    <Parameter name="updatedby"></Parameter>
+  </SqlMethod>
+
+  <SqlMethod name="delete" type="preparedStatement" return="rowCount">
+    <Sql><![CDATA[
+        DELETE FROM c_printout_config
+        WHERE c_printout_config.C_Printout_Config_ID = ? 
+        
+        AND c_printout_config.AD_Client_ID IN ('1') 
+        AND c_printout_config.AD_Org_ID IN ('1') 
+    ]]></Sql>
+    <Parameter name="param1"></Parameter>
+    
+        <Parameter name="adUserClient" type="replace" optional="true" after="c_printout_config.AD_Client_ID IN (" text="'1'"/>
+        <Parameter name="adOrgClient" type="replace" optional="true" after="c_printout_config.AD_Org_ID IN (" text="'1'"/>
+  </SqlMethod>
+
+  <SqlMethod name="deleteTransactional" connection="true" type="preparedStatement" return="rowCount">
+    <Sql><![CDATA[
+        DELETE FROM c_printout_config
+        WHERE c_printout_config.C_Printout_Config_ID = ? 
+        
+    ]]></Sql>
+    <Parameter name="param1"></Parameter>
+    
+  </SqlMethod>
+  
+  <SqlMethod name="selectOrg" type="preparedStatement" return="string">
+    <SqlMethodComment>Select for relation</SqlMethodComment>
+    <Sql><![CDATA[ 
+        SELECT AD_ORG_ID
+          FROM c_printout_config
+         WHERE c_printout_config.C_Printout_Config_ID = ? 
+    ]]></Sql>
+    <Parameter name="id"></Parameter>
+  </SqlMethod>
+  
+  <SqlMethod name="getCurrentDBTimestamp" type="preparedStatement" return="string">
+    <Sql><![CDATA[ 
+        SELECT to_char(Updated, 'YYYYMMDDHH24MISS') as Updated_Time_Stamp
+          FROM c_printout_config
+         WHERE c_printout_config.C_Printout_Config_ID = ? 
+    ]]></Sql>
+    <Parameter name="id"></Parameter>
+  </SqlMethod>
+</SqlClass>

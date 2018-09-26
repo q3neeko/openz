@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SqlClass id="class" name="CallOffsData" package="org.openbravo.erpWindows.FrameContractOverviewPO">
+  <SqlClassComment>WAD Generated class</SqlClassComment>
+
+  <SqlMethod name="selectEdit" type="preparedStatement" return="multiple">
+    <SqlMethodComment>Select for edit</SqlMethodComment>
+    <Sql><![CDATA[
+        SELECT to_char(c_framecalloffoverview.Created, ?) as created, 
+        (SELECT NAME FROM AD_USER u WHERE AD_USER_ID = c_framecalloffoverview.CreatedBy) as CreatedByR, 
+        to_char(c_framecalloffoverview.Updated, ?) as updated, 
+        to_char(c_framecalloffoverview.Updated, 'YYYYMMDDHH24MISS') as Updated_Time_Stamp,  
+        c_framecalloffoverview.UpdatedBy, 
+        (SELECT NAME FROM AD_USER u WHERE AD_USER_ID = c_framecalloffoverview.UpdatedBy) as UpdatedByR,
+        c_framecalloffoverview.C_Framecontractoverview_ID, 
+(CASE WHEN c_framecalloffoverview.C_Framecontractoverview_ID IS NULL THEN '' ELSE  (COALESCE(TO_CHAR(TO_CHAR(COALESCE(TO_CHAR(table2.Value), ''))),'')  || ' - ' || COALESCE(TO_CHAR(TO_CHAR(COALESCE(TO_CHAR(table2.Name), ''))),'')  || ' - ' || COALESCE(TO_CHAR(TO_CHAR(COALESCE(TO_CHAR(table3.Value), ''))),'')  || ' - ' || COALESCE(TO_CHAR(TO_CHAR(COALESCE(TO_CHAR((CASE WHEN tableTRL3.Name IS NULL THEN TO_CHAR(table3.Name) ELSE TO_CHAR(tableTRL3.Name) END)), ''))),'')  || ' - ' || COALESCE(TO_CHAR(TO_CHAR(COALESCE(TO_CHAR(table1.Documentno), ''))),'') ) END) AS C_Framecontractoverview_IDR, 
+c_framecalloffoverview.C_Order_ID, 
+(CASE WHEN c_framecalloffoverview.C_Order_ID IS NULL THEN '' ELSE  (COALESCE(TO_CHAR(TO_CHAR(COALESCE(TO_CHAR(table4.DocumentNo), ''))),'')  || ' - ' || COALESCE(TO_CHAR(TO_CHAR(COALESCE(TO_CHAR(table4.Name), ''))),'')  || ' - ' || COALESCE(TO_CHAR(TO_CHAR(table4.DateOrdered, 'DD-MM-YYYY')),'')  || ' - ' || COALESCE(TO_CHAR(TO_CHAR(COALESCE(TO_CHAR(table4.GrandTotal), ''))),'') ) END) AS C_Order_IDR, 
+c_framecalloffoverview.Documentno, 
+c_framecalloffoverview.M_Product_ID, 
+(CASE WHEN c_framecalloffoverview.M_Product_ID IS NULL THEN '' ELSE  (COALESCE(TO_CHAR(TO_CHAR(COALESCE(TO_CHAR(table5.Value), ''))),'')  || ' - ' || COALESCE(TO_CHAR(TO_CHAR(COALESCE(TO_CHAR((CASE WHEN tableTRL5.Name IS NULL THEN TO_CHAR(table5.Name) ELSE TO_CHAR(tableTRL5.Name) END)), ''))),'') ) END) AS M_Product_IDR, 
+c_framecalloffoverview.Calloffqty, 
+c_framecalloffoverview.Linenetamt, 
+c_framecalloffoverview.Scheddeliverydate, 
+c_framecalloffoverview.Priceactual, 
+c_framecalloffoverview.Dateordered, 
+COALESCE(c_framecalloffoverview.Deliverycomplete, 'N') AS Deliverycomplete, 
+c_framecalloffoverview.Docstatus, 
+c_framecalloffoverview.C_Project_ID, 
+(CASE WHEN c_framecalloffoverview.C_Project_ID IS NULL THEN '' ELSE  (COALESCE(TO_CHAR(TO_CHAR(COALESCE(TO_CHAR(table6.Value), ''))),'')  || ' - ' || COALESCE(TO_CHAR(TO_CHAR(COALESCE(TO_CHAR(table6.Name), ''))),'') ) END) AS C_Project_IDR, 
+c_framecalloffoverview.C_Projecttask_ID, 
+(CASE WHEN c_framecalloffoverview.C_Projecttask_ID IS NULL THEN '' ELSE  (COALESCE(TO_CHAR(TO_CHAR(COALESCE(TO_CHAR(table8.Value), ''))),'')  || ' - ' || COALESCE(TO_CHAR(TO_CHAR(COALESCE(TO_CHAR(table8.Name), ''))),'')  || ' - ' || COALESCE(TO_CHAR(TO_CHAR(COALESCE(TO_CHAR(table7.Name), ''))),'') ) END) AS C_Projecttask_IDR, 
+c_framecalloffoverview.A_Asset_ID, 
+(CASE WHEN c_framecalloffoverview.A_Asset_ID IS NULL THEN '' ELSE  (COALESCE(TO_CHAR(TO_CHAR(COALESCE(TO_CHAR(table9.Name), ''))),'') ) END) AS A_Asset_IDR, 
+c_framecalloffoverview.C_Framecalloffoverview_ID, 
+COALESCE(c_framecalloffoverview.Isactive, 'N') AS Isactive, 
+c_framecalloffoverview.C_Orderline_ID, 
+c_framecalloffoverview.AD_Client_ID, 
+c_framecalloffoverview.AD_Org_ID, 
+c_framecalloffoverview.Line, 
+c_framecalloffoverview.M_Warehouse_ID, 
+c_framecalloffoverview.Qtyordered, 
+c_framecalloffoverview.C_Uom_ID, 
+COALESCE(c_framecalloffoverview.Issotrx, 'N') AS Issotrx, 
+ 
+        ? AS LANGUAGE 
+        FROM c_framecalloffoverview left join (select C_Framecontractoverview_ID, C_Bpartner_ID, M_Product_ID, Documentno from C_Framecontractoverview) table1 on (c_framecalloffoverview.C_Framecontractoverview_ID = table1.C_Framecontractoverview_ID) left join (select C_BPartner_ID, Value, Name from C_BPartner) table2 on (table1.C_Bpartner_ID = table2.C_BPartner_ID) left join (select M_Product_ID, Value, Name from M_Product) table3 on (table1.M_Product_ID = table3.M_Product_ID) left join (select M_Product_ID,AD_Language, Name from M_Product_TRL) tableTRL3 on (table3.M_Product_ID = tableTRL3.M_Product_ID and tableTRL3.AD_Language = ?)  left join (select C_Order_ID, DocumentNo, Name, DateOrdered, GrandTotal from C_Order) table4 on (c_framecalloffoverview.C_Order_ID = table4.C_Order_ID) left join (select M_Product_ID, Value, Name from M_Product) table5 on (c_framecalloffoverview.M_Product_ID = table5.M_Product_ID) left join (select M_Product_ID,AD_Language, Name from M_Product_TRL) tableTRL5 on (table5.M_Product_ID = tableTRL5.M_Product_ID and tableTRL5.AD_Language = ?)  left join (select C_Project_ID, Value, Name from C_Project) table6 on (c_framecalloffoverview.C_Project_ID = table6.C_Project_ID) left join (select C_Projecttask_ID, C_Project_ID, Name from C_Projecttask) table7 on (c_framecalloffoverview.C_Projecttask_ID = table7.C_Projecttask_ID) left join (select C_Project_ID, Value, Name from C_Project) table8 on (table7.C_Project_ID = table8.C_Project_ID) left join (select A_Asset_ID, Name from A_Asset) table9 on (c_framecalloffoverview.A_Asset_ID = table9.A_Asset_ID)
+        WHERE 2=2 
+
+        AND 1=1 
+        AND c_framecalloffoverview.C_Framecalloffoverview_ID = ? 
+        AND c_framecalloffoverview.AD_Client_ID IN ('1') 
+           AND c_framecalloffoverview.AD_Org_ID IN ('1') 
+    ]]></Sql>
+    <Parameter name="dateTimeFormat"></Parameter>
+    <Parameter name="dateTimeFormat"></Parameter>
+    
+    <Parameter name="paramLanguage"></Parameter>
+<Parameter name="paramLanguage"/>
+<Parameter name="paramLanguage"/>
+
+    <Parameter name="cFramecontractoverviewId" optional="true" after="AND 1=1 " id="paramKeyParent"> AND c_framecalloffoverview.C_Framecontractoverview_ID = ? </Parameter>
+    <Parameter name="key"></Parameter>
+        <Parameter name="adUserClient" type="replace" optional="true" after="c_framecalloffoverview.AD_Client_ID IN (" text="'1'"/>
+        <Parameter name="adOrgClient" type="replace" optional="true" after="c_framecalloffoverview.AD_Org_ID IN (" text="'1'"/>
+
+    <Field name="adUserClient" value="void"></Field>
+    <Field name="adOrgClient" value="void"></Field>
+    <Field name="createdby" value="void"></Field>
+    
+    <Field name="trBgcolor" value="void"></Field>
+    <Field name="totalCount" value="void"></Field>
+    <Field name="dateTimeFormat" value=""></Field>
+  </SqlMethod>
+  
+  
+
+  <SqlMethod name="set" type="constant" return="multiple">
+      <SqlMethodComment>Create a registry</SqlMethodComment>
+      <Sql></Sql>
+    <Parameter name="cFramecontractoverviewId" id="paramKeyParent"></Parameter>
+<Parameter name="isactive"></Parameter><Parameter name="cProjectId"></Parameter><Parameter name="cOrderlineId"></Parameter><Parameter name="cOrderId"></Parameter><Parameter name="aAssetId"></Parameter><Parameter name="adClientId"></Parameter><Parameter name="linenetamt"></Parameter><Parameter name="adOrgId"></Parameter><Parameter name="cProjecttaskId"></Parameter><Parameter name="line"></Parameter><Parameter name="calloffqty"></Parameter><Parameter name="dateordered"></Parameter><Parameter name="mWarehouseId"></Parameter><Parameter name="documentno"></Parameter><Parameter name="cUomId"></Parameter><Parameter name="updatedby"></Parameter><Parameter name="updatedbyr"></Parameter><Parameter name="createdby"></Parameter><Parameter name="createdbyr"></Parameter><Parameter name="deliverycomplete"></Parameter><Parameter name="qtyordered"></Parameter><Parameter name="issotrx"></Parameter><Parameter name="mProductId"></Parameter><Parameter name="mProductIdr"></Parameter><Parameter name="docstatus"></Parameter><Parameter name="priceactual"></Parameter><Parameter name="cFramecalloffoverviewId"></Parameter><Parameter name="scheddeliverydate"></Parameter>
+   </SqlMethod>
+
+
+
+
+
+
+   <SqlMethod name="selectDef2D227E4671AB4ED78BB31AF6B309EE00_0" type="preparedStatement" return="String" default="">
+    <SqlMethodComment>Select for auxiliar field</SqlMethodComment>
+    <Sql><![CDATA[
+        SELECT  ( COALESCE(TO_CHAR(table1.Name), '') ) as Updatedby FROM AD_User table1 WHERE table1.isActive='Y' AND table1.AD_User_ID = ?  
+    ]]></Sql>
+<Parameter name="UpdatedbyR"/>
+  </SqlMethod>
+
+   <SqlMethod name="selectDefF73F9E8286274EECB8B46FCD74FCB421_1" type="preparedStatement" return="String" default="">
+    <SqlMethodComment>Select for auxiliar field</SqlMethodComment>
+    <Sql><![CDATA[
+        SELECT  ( COALESCE(TO_CHAR(table1.Name), '') ) as Createdby FROM AD_User table1 WHERE table1.isActive='Y' AND table1.AD_User_ID = ?  
+    ]]></Sql>
+<Parameter name="CreatedbyR"/>
+  </SqlMethod>
+
+   <SqlMethod name="selectDefA2F77C66ADAA446CB48FD520FE4FC8CA_2" type="preparedStatement" return="String" default="">
+    <SqlMethodComment>Select for auxiliar field</SqlMethodComment>
+    <Sql><![CDATA[
+        SELECT  ( COALESCE(TO_CHAR(table1.Value), '')  || ' - ' || COALESCE(TO_CHAR(table1.Name), '') ) as M_Product_ID FROM M_Product table1 WHERE table1.isActive='Y' AND table1.M_Product_ID = ?  
+    ]]></Sql>
+<Parameter name="M_Product_IDR"/>
+  </SqlMethod>
+
+
+
+  <SqlMethod name="selectParentID" type="preparedStatement" return="String" default="">
+    <SqlMethodComment>return the parent ID</SqlMethodComment>
+    <Sql><![CDATA[
+        SELECT c_framecalloffoverview.C_Framecontractoverview_ID AS NAME
+        FROM c_framecalloffoverview
+        WHERE c_framecalloffoverview.C_Framecalloffoverview_ID = ?
+    ]]></Sql>
+    <Parameter name="key"></Parameter>
+  </SqlMethod>
+
+   <SqlMethod name="selectParent" type="preparedStatement" return="String" default="">
+    <SqlMethodComment>Select for parent field</SqlMethodComment>
+    <Sql><![CDATA[
+        SELECT (TO_CHAR(COALESCE(TO_CHAR(table2.Value), '')) || ' - ' || TO_CHAR(COALESCE(TO_CHAR(table2.Name), '')) || ' - ' || TO_CHAR(COALESCE(TO_CHAR(table3.Value), '')) || ' - ' || TO_CHAR(COALESCE(TO_CHAR((CASE WHEN tableTRL3.Name IS NULL THEN TO_CHAR(table3.Name) ELSE TO_CHAR(tableTRL3.Name) END)), '')) || ' - ' || TO_CHAR(COALESCE(TO_CHAR(table1.Documentno), ''))) AS NAME FROM c_framecontractoverview left join (select C_Framecontractoverview_ID, C_Bpartner_ID, M_Product_ID, Documentno from C_Framecontractoverview) table1 on (c_framecontractoverview.C_Framecontractoverview_ID = table1.C_Framecontractoverview_ID) left join (select C_BPartner_ID, Value, Name from C_BPartner) table2 on (table1.C_Bpartner_ID = table2.C_BPartner_ID) left join (select M_Product_ID, Value, Name from M_Product) table3 on (table1.M_Product_ID = table3.M_Product_ID) left join (select M_Product_ID,AD_Language, Name from M_Product_TRL) tableTRL3 on (table3.M_Product_ID = tableTRL3.M_Product_ID and tableTRL3.AD_Language = ?)  WHERE c_framecontractoverview.C_Framecontractoverview_ID = ?  
+    ]]></Sql>
+<Parameter name="paramLanguage"/>
+<Parameter name="cFramecontractoverviewId"/>
+
+  </SqlMethod>
+
+
+
+   <SqlMethod name="selectParentTrl" type="preparedStatement" return="String" default="">
+    <SqlMethodComment>Select for parent field</SqlMethodComment>
+    <Sql><![CDATA[
+        SELECT (TO_CHAR(COALESCE(TO_CHAR(table2.Value), '')) || ' - ' || TO_CHAR(COALESCE(TO_CHAR(table2.Name), '')) || ' - ' || TO_CHAR(COALESCE(TO_CHAR(table3.Value), '')) || ' - ' || TO_CHAR(COALESCE(TO_CHAR((CASE WHEN tableTRL3.Name IS NULL THEN TO_CHAR(table3.Name) ELSE TO_CHAR(tableTRL3.Name) END)), '')) || ' - ' || TO_CHAR(COALESCE(TO_CHAR(table1.Documentno), ''))) AS NAME FROM c_framecontractoverview left join (select C_Framecontractoverview_ID, C_Bpartner_ID, M_Product_ID, Documentno from C_Framecontractoverview) table1 on (c_framecontractoverview.C_Framecontractoverview_ID = table1.C_Framecontractoverview_ID) left join (select C_BPartner_ID, Value, Name from C_BPartner) table2 on (table1.C_Bpartner_ID = table2.C_BPartner_ID) left join (select M_Product_ID, Value, Name from M_Product) table3 on (table1.M_Product_ID = table3.M_Product_ID) left join (select M_Product_ID,AD_Language, Name from M_Product_TRL) tableTRL3 on (table3.M_Product_ID = tableTRL3.M_Product_ID and tableTRL3.AD_Language = ?)  WHERE c_framecontractoverview.C_Framecontractoverview_ID = ?  
+    ]]></Sql>
+<Parameter name="paramLanguage"/>
+<Parameter name="cFramecontractoverviewId"/>
+
+  </SqlMethod>
+
+
+
+
+
+
+
+
+  <SqlMethod name="update" type="preparedStatement" return="rowCount" static="false" connection="true">
+    <Sql><![CDATA[
+        UPDATE c_framecalloffoverview
+        SET C_Framecontractoverview_ID = (?) , C_Order_ID = (?) , Documentno = (?) , M_Product_ID = (?) , Calloffqty = TO_NUMBER(?) , Linenetamt = TO_NUMBER(?) , Scheddeliverydate = TO_DATE(?) , Priceactual = TO_NUMBER(?) , Dateordered = TO_DATE(?) , Deliverycomplete = (?) , Docstatus = (?) , C_Project_ID = (?) , C_Projecttask_ID = (?) , A_Asset_ID = (?) , C_Framecalloffoverview_ID = (?) , Isactive = (?) , C_Orderline_ID = (?) , AD_Client_ID = (?) , AD_Org_ID = (?) , Line = TO_NUMBER(?) , M_Warehouse_ID = (?) , Qtyordered = TO_NUMBER(?) , C_Uom_ID = (?) , Issotrx = (?) , updated = now(), updatedby = ? 
+        WHERE c_framecalloffoverview.C_Framecalloffoverview_ID = ? 
+                 AND c_framecalloffoverview.C_Framecontractoverview_ID = ? 
+        AND c_framecalloffoverview.AD_Client_ID IN ('1') 
+        AND c_framecalloffoverview.AD_Org_ID IN ('1') 
+    ]]></Sql>
+    <Parameter name="cFramecontractoverviewId"></Parameter> <Parameter name="cOrderId"></Parameter> <Parameter name="documentno"></Parameter> <Parameter name="mProductId"></Parameter> <Parameter name="calloffqty"></Parameter> <Parameter name="linenetamt"></Parameter> <Parameter name="scheddeliverydate"></Parameter> <Parameter name="priceactual"></Parameter> <Parameter name="dateordered"></Parameter> <Parameter name="deliverycomplete"></Parameter> <Parameter name="docstatus"></Parameter> <Parameter name="cProjectId"></Parameter> <Parameter name="cProjecttaskId"></Parameter> <Parameter name="aAssetId"></Parameter> <Parameter name="cFramecalloffoverviewId"></Parameter> <Parameter name="isactive"></Parameter> <Parameter name="cOrderlineId"></Parameter> <Parameter name="adClientId"></Parameter> <Parameter name="adOrgId"></Parameter> <Parameter name="line"></Parameter> <Parameter name="mWarehouseId"></Parameter> <Parameter name="qtyordered"></Parameter> <Parameter name="cUomId"></Parameter> <Parameter name="issotrx"></Parameter> 
+    <Parameter name="updatedby"></Parameter>
+    <Parameter id="paramKey" name="cFramecalloffoverviewId"></Parameter>
+    
+    <Parameter name="cFramecontractoverviewId" id="paramKeyParent"></Parameter>
+        <Parameter name="adUserClient" type="replace" optional="true" after="c_framecalloffoverview.AD_Client_ID IN (" text="'1'"/>
+        <Parameter name="adOrgClient" type="replace" optional="true" after="c_framecalloffoverview.AD_Org_ID IN (" text="'1'"/>
+  </SqlMethod>
+
+  <SqlMethod name="insert" type="preparedStatement" return="rowCount" static="false" connection="true">
+    <Sql><![CDATA[
+        INSERT INTO c_framecalloffoverview 
+        (C_Framecontractoverview_ID, C_Order_ID, Documentno, M_Product_ID, Calloffqty, Linenetamt, Scheddeliverydate, Priceactual, Dateordered, Deliverycomplete, Docstatus, C_Project_ID, C_Projecttask_ID, A_Asset_ID, C_Framecalloffoverview_ID, Isactive, C_Orderline_ID, AD_Client_ID, AD_Org_ID, Line, M_Warehouse_ID, Qtyordered, C_Uom_ID, Issotrx, created, createdby, updated, updatedBy)
+        VALUES ((?), (?), (?), (?), TO_NUMBER(?), TO_NUMBER(?), TO_DATE(?), TO_NUMBER(?), TO_DATE(?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), TO_NUMBER(?), (?), TO_NUMBER(?), (?), (?), now(), ?, now(), ?)
+    ]]></Sql>
+    <Parameter name="cFramecontractoverviewId"></Parameter> <Parameter name="cOrderId"></Parameter> <Parameter name="documentno"></Parameter> <Parameter name="mProductId"></Parameter> <Parameter name="calloffqty"></Parameter> <Parameter name="linenetamt"></Parameter> <Parameter name="scheddeliverydate"></Parameter> <Parameter name="priceactual"></Parameter> <Parameter name="dateordered"></Parameter> <Parameter name="deliverycomplete"></Parameter> <Parameter name="docstatus"></Parameter> <Parameter name="cProjectId"></Parameter> <Parameter name="cProjecttaskId"></Parameter> <Parameter name="aAssetId"></Parameter> <Parameter name="cFramecalloffoverviewId"></Parameter> <Parameter name="isactive"></Parameter> <Parameter name="cOrderlineId"></Parameter> <Parameter name="adClientId"></Parameter> <Parameter name="adOrgId"></Parameter> <Parameter name="line"></Parameter> <Parameter name="mWarehouseId"></Parameter> <Parameter name="qtyordered"></Parameter> <Parameter name="cUomId"></Parameter> <Parameter name="issotrx"></Parameter> 
+    <Parameter name="createdby"></Parameter>
+    <Parameter name="updatedby"></Parameter>
+  </SqlMethod>
+
+  <SqlMethod name="delete" type="preparedStatement" return="rowCount">
+    <Sql><![CDATA[
+        DELETE FROM c_framecalloffoverview
+        WHERE c_framecalloffoverview.C_Framecalloffoverview_ID = ? 
+                 AND c_framecalloffoverview.C_Framecontractoverview_ID = ? 
+        AND c_framecalloffoverview.AD_Client_ID IN ('1') 
+        AND c_framecalloffoverview.AD_Org_ID IN ('1') 
+    ]]></Sql>
+    <Parameter name="param1"></Parameter>
+        <Parameter name="cFramecontractoverviewId" id="paramKeyParent"></Parameter>
+        <Parameter name="adUserClient" type="replace" optional="true" after="c_framecalloffoverview.AD_Client_ID IN (" text="'1'"/>
+        <Parameter name="adOrgClient" type="replace" optional="true" after="c_framecalloffoverview.AD_Org_ID IN (" text="'1'"/>
+  </SqlMethod>
+
+  <SqlMethod name="deleteTransactional" connection="true" type="preparedStatement" return="rowCount">
+    <Sql><![CDATA[
+        DELETE FROM c_framecalloffoverview
+        WHERE c_framecalloffoverview.C_Framecalloffoverview_ID = ? 
+                 AND c_framecalloffoverview.C_Framecontractoverview_ID = ? 
+    ]]></Sql>
+    <Parameter name="param1"></Parameter>
+        <Parameter name="cFramecontractoverviewId" id="paramKeyParent"></Parameter>
+  </SqlMethod>
+  
+  <SqlMethod name="selectOrg" type="preparedStatement" return="string">
+    <SqlMethodComment>Select for relation</SqlMethodComment>
+    <Sql><![CDATA[ 
+        SELECT AD_ORG_ID
+          FROM c_framecalloffoverview
+         WHERE c_framecalloffoverview.C_Framecalloffoverview_ID = ? 
+    ]]></Sql>
+    <Parameter name="id"></Parameter>
+  </SqlMethod>
+  
+  <SqlMethod name="getCurrentDBTimestamp" type="preparedStatement" return="string">
+    <Sql><![CDATA[ 
+        SELECT to_char(Updated, 'YYYYMMDDHH24MISS') as Updated_Time_Stamp
+          FROM c_framecalloffoverview
+         WHERE c_framecalloffoverview.C_Framecalloffoverview_ID = ? 
+    ]]></Sql>
+    <Parameter name="id"></Parameter>
+  </SqlMethod>
+</SqlClass>
