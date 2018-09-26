@@ -9,7 +9,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.log4j.Logger;
 import org.openbravo.base.secureApp.HttpSecureAppServlet;
 import org.openbravo.base.secureApp.VariablesSecureApp;
 import org.openbravo.data.FieldProvider;
@@ -30,7 +29,7 @@ import org.openz.view.templates.ConfigureFrameWindow;
 
 public class ProductionRequired  extends HttpSecureAppServlet {
     private static final long serialVersionUID = 1L;
-    static Logger log4j = Logger.getLogger(ProductionRequired.class);
+//    static Logger log4j = Logger.getLogger(ProductionRequired.class);
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException,
         ServletException {
@@ -38,7 +37,6 @@ public class ProductionRequired  extends HttpSecureAppServlet {
       Connection conn = null;
       Vector <String> retval;
       Integer line=0;
-            
       
       Scripthelper script= new Scripthelper();
       response.setContentType("text/html; charset=UTF-8");
