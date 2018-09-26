@@ -174,6 +174,7 @@ public class ProductionRequired  extends HttpSecureAppServlet {
               //GridData= ProductionRequiredData.selectgrid(this, vars.getLanguage(),strProductId, strDateFrom, strDateTo);
               String orglist=Tree.getMembers(this, strTreeOrg, vars.getOrg());
               GridData= ProductionRequiredData.selectgrid(this, vars.getLanguage(), strProductId,strDateFrom,strDateTo,orglist);
+              //START
               log4j.error("1234554321p_001");
               String strGrid1=grid.printGrid(this, vars, script, GridData);
               log4j.error("1234554321p_002");
