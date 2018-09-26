@@ -1,18 +1,17 @@
 //Sqlc generated V1.O00-1
 package org.openz.controller.form;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.Vector;
+import java.sql.*;
+
+import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
 
-import org.apache.log4j.Logger;
 import org.openbravo.data.FieldProvider;
-import org.openbravo.data.UtilSql;
 import org.openbravo.database.ConnectionProvider;
+import org.openbravo.data.UtilSql;
+import org.openbravo.data.FResponse;
+import java.util.*;
 
 class ProductionRequiredData implements FieldProvider {
 static Logger log4j = Logger.getLogger(ProductionRequiredData.class);
