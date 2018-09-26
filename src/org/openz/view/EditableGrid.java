@@ -321,57 +321,39 @@ public class EditableGrid {
  
   
   public String printGrid(HttpSecureAppServlet servlet,VariablesSecureApp vars,Scripthelper script,FieldProvider[] data) throws Exception{
-	log4j.error("1234554321_START");
     StringBuilder grid= new StringBuilder(10000000);
-    log4j.error("1234554321_001");
     grid.append(initGridStructure());
-    log4j.error("1234554321_002");
     String evenodd="even";
-    log4j.error("1234554321_003");
     final int maxRows = Integer.valueOf(vars.getSessionValue("#RECORDRANGEINFO"));
-    log4j.error("1234554321_004");
     int displayrows;
-    log4j.error("1234554321_005");
     if (data.length > maxRows) {
-    	log4j.error("1234554321_IF_001");
       displayrows=maxRows;
-      log4j.error("1234554321_IF_002");
       final OBError obError = new OBError();
-      log4j.error("1234554321_IF_003");
       String strType="WARNING";
-      log4j.error("1234554321_IF_004");
       String stroMsg="";
-      log4j.error("1234554321_IF_005");
       final OBError myMessage = vars.getMessage(servlet.getClass().getName());
-      log4j.error("1234554321_IF_006");
       if (myMessage!=null){
         stroMsg=myMessage.getMessage() + "<br /><br />";
         if (myMessage.getType().equals("Error"))
           strType=myMessage.getType();
       }
       String strMsg = Utility.messageBD(servlet, "MAX_RECORDS_REACHED", vars.getLanguage());
-      log4j.error("1234554321_IF_007");
       strMsg = strMsg.replaceAll("%returned%", String.valueOf(data.length));
-      log4j.error("1234554321_IF_008");
       strMsg = strMsg.replaceAll("%shown%", String.valueOf(maxRows));
-      log4j.error("1234554321_IF_009");
       obError.setMessage(stroMsg+strMsg);
-      log4j.error("1234554321_IF_010");
       obError.setTitle("");
-      log4j.error("1234554321_IF_011");
       obError.setType(strType);
-      log4j.error("1234554321_IF_012");
       vars.setMessage(servlet.getClass().getName(), obError);
-      log4j.error("1234554321_IF_013");
     }
     else
       displayrows=data.length;
-    log4j.error("1234554321_006");
     if (data.length==0)
       // If Data is null, only the header is printed
       grid= grid.append(initNewGroup(1,null,servlet,vars,script));
-    log4j.error("1234554321_007");
-    for (int i = 0; i < displayrows; i++){
+    log4j.error("1234554321_START");
+    log4j.error("1234554321_displayrows: " + displayrows);
+    for (int i = 0; i < displayrows; i++) {
+    	log4j.error("1234554321_RUN " + i + " BEGIN");
       if (isGroupchangeOnLevel(data[i])>0 || (levelpointer.elementAt(1).IDColumn.equals(lineIDColumn) && i==0)){
         if (levelpointer.elementAt(1).IDColumn.equals(lineIDColumn) && i==0) {
           levelpointer.elementAt(1).IDValue=levelpointer.elementAt(1).IDValue+data[i].getField(lineIDColumn);
@@ -390,8 +372,8 @@ public class EditableGrid {
         evenodd="even";
       else
         evenodd="odd";
+      log4j.error("1234554321_RUN " + i + " END");
     }
-    log4j.error("1234554321_008");
     grid=grid.append("</TABLE>");
     return grid.toString();
   }
